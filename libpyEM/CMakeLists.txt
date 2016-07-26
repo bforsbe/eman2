@@ -99,7 +99,6 @@ ENDFOREACH(f)
 
 # MESSAGE("empy list: ${empythonlibs}")
 
-FILE(GLOB headerfiles "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
 # INSTALL(FILES ${headerfiles} DESTINATION include)
 
@@ -111,5 +110,4 @@ FOREACH(f ${headerfiles})
 ENDFOREACH(f)
 
 # MESSAGE("hdr files: ${headerfiles}")
-
 ADD_SUBDIRECTORY(qtgui)
