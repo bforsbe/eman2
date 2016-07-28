@@ -535,6 +535,7 @@ INCLUDE_DIRECTORIES(.
 	    ${BOOST_INCLUDE_PATH}
 	    ${PYTHON_INCLUDE_PATH}
 	    ${FREETYPE_INCLUDE_PATH}
+		${INCLUDE_DIRS}
             )
 #            /usr/include/freetype2
 #            /usr/local/include/freetype2
