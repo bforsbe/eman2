@@ -2,5 +2,5 @@
 
 import os
 
-e2real=os.getenv("EMAN2DIR")+"/bin/e2_real.py"
+e2real = "{}/e2_real.py".format(os.path.dirname(os.path.abspath(__file__)))
 os.execlp("ipython","ipython","-i",e2real)
