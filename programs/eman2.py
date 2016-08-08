@@ -48,11 +48,8 @@ If you are just getting started with EMAN2, here are some tips:
 4) Please consider going through a simple tutorial available at: http://blake.bcm.edu/emanwiki/EMAN2/Tutorials
 """
 
-from EMAN2 import *
 from e2version import EMANVERSION,DATESTAMP
 from emapplication import EMApp
-import os, json, re, glob, signal
-import subprocess
 
 helpstring+="\n\nYou are currently running %s (%s)"%(EMANVERSION,DATESTAMP[6:-2])
 

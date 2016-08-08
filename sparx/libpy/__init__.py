@@ -35,11 +35,6 @@
 Python layer for scripting and interactive use.
 """
 
-from utilities       import *
-from filter          import *
-from projection      import *
-from fundamentals    import *
-from statistics      import *
 from alignment       import *
 from morphology      import *
 from reconstruction  import *
