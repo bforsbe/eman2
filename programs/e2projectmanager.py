@@ -124,7 +124,7 @@ class EMProjectManager(QtGui.QMainWindow):
 		self.icons = {}
 		EMAN2DIR = os.getenv("EMAN2DIR")
 
-		jsonfile = open(os.getenv("EMAN2DIR")+'/lib/pmconfig/icons.json', 'r')
+		jsonfile = open(os.getenv("EMAN2DIR")+'/pmconfig/icons.json', 'r')
 		data = jsonfile.read()
 		data = self.json_strip_comments(data)
 		tree = json.loads(data)
@@ -273,12 +273,12 @@ class EMProjectManager(QtGui.QMainWindow):
 		"""
 		self.tree_stacked_widget = QtGui.QStackedWidget()
 		self.tree_stacked_widget.setMinimumWidth(300)
-		self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/lib/pmconfig/spr.json', 'SPR'))
-		#self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/lib/pmconfig/spt.json', 'SPT'))
+		self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/pmconfig/spr.json', 'SPR'))
+		#self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/pmconfig/spt.json', 'SPT'))
 
-		self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/lib/pmconfig/tomo.json', 'Tomography'))
+		self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/pmconfig/tomo.json', 'Tomography'))
 		try :
-			self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/lib/pmconfig/tomosegpanel.json', 'TomogramSegmentation'))
+			self.tree_stacked_widget.addWidget(self.makeTreeWidget(os.getenv("EMAN2DIR")+'/pmconfig/tomosegpanel.json', 'TomogramSegmentation'))
 		except :
 			pass
 		#Jesus
