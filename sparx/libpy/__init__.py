@@ -27,13 +27,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 #
-#
-
-
-# $ Header: $
-"""
-Python layer for scripting and interactive use.
-"""
 
 from utilities       import *
 from filter          import *
@@ -44,6 +37,8 @@ from alignment       import *
 from morphology      import *
 from reconstruction  import *
 from applications    import *
+from user_functions  import *
 from global_def      import *
 from pixel_error     import *
 from development     import *
+from multi_shc       import *
