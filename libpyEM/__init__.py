@@ -36,7 +36,6 @@ os.environ["EMAN2DIR"] = os.path.dirname(os.path.abspath(__file__))
 import sys
 from math import *
 from sys import exit
-import os
 import time
 import shelve
 import re
@@ -48,13 +47,11 @@ from EMAN2_cppwrap import *
 from pyemtbx.imagetypes import *
 from pyemtbx.box import *
 from e2version import *
-import EMAN2db, EMAN2jsondb
+from EMAN2 import EMAN2db, EMAN2jsondb
+from EMAN2 import EMAN2jsondb
 import argparse, copy
 import glob
-
-
 import threading
-#from Sparx import *
 
 HOMEDB=None
 

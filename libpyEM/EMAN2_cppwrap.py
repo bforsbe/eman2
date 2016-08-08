@@ -52,4 +52,3 @@ try: from libpyTomoSeg2 import * 			# this module may not exist on Windows, whic
 except: pass
 try: from libpyMarchingCubes2 import *		# this module won't always exist. Somethings may fail without it, but that's inevitable
 except: pass
-#from libpyGLUtils2 import *
