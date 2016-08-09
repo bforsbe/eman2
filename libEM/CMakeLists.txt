@@ -95,6 +95,12 @@ SET(LIB_GLEM_SOURCE
 		marchingcubes.cpp
 		emftgl.cpp)
 
+if(WIN32)
+    set(suffix .pyd)
+else()
+    set(suffix .so)
+endif()
+
 IF(WIN32)
     ADD_LIBRARY(EM2 STATIC ${LIB_EM_SOURCE})
     ADD_LIBRARY(GLEM2 STATIC ${LIB_GLEM_SOURCE})
@@ -106,6 +112,12 @@ IF(WIN32)
 ELSE(WIN32)
     ADD_LIBRARY(EM2 SHARED ${LIB_EM_SOURCE})
     ADD_LIBRARY(GLEM2 SHARED ${LIB_GLEM_SOURCE})
+    set_target_properties(EM2 GLEM2
+            PROPERTIES
+            PREFIX lib
+            SUFFIX ${suffix}
+            )
+    
     IF(ENABLE_FFTW2 OR ENABLE_FFTW3)
     	TARGET_LINK_LIBRARIES(EM2 ${FFTW_LIBRARIES} ${GSL_LIBRARY} ${GSL_CBLAS_LIBRARY} m)
     ELSE(ENABLE_FFTW2 OR ENABLE_FFTW3)
