@@ -201,6 +201,7 @@ ENDIF(ENABLE_IOCACHE)
 
 SET(INCLUDE_DIRS
 	${EMAN_SOURCE_DIR}/libEM
+	$ENV{PREFIX}/include
 	$ENV{HOME}/include
 	$ENV{FFTWDIR}/include
 	$ENV{GSLDIR}/include
@@ -215,6 +216,7 @@ SET(INCLUDE_DIRS
 SET(LIB_DIRS
 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries
 	$ENV{EMANDIR}/lib
+	$ENV{PREFIX}/lib
 	$ENV{HOME}/lib
 	${PLATFORMLIB}
 	$ENV{FFTWDIR}/lib
@@ -379,6 +381,7 @@ IF(ENABLE_ACML_FFT)
 	FIND_LIBRARY(G2C_LIBRARY NAMES g2c PATHS
 		/usr/lib64
 		/usr/lib
+		$ENV{PREFIX}/lib
 		/usr/local/lib
 		$ENV{HOME}/lib )
 	ADD_DEFINITIONS(-DACML)
@@ -407,12 +410,12 @@ ENDIF(ENABLE_DJBFFT)
 
 IF(ENABLE_OPTPP)
     FIND_PATH(OPTPP_INCLUDE_PATH Opt.h /usr/include /usr/include/opt++
-              /usr/local/include /usr/local/include/opt++ $ENV{HOME}/include
-             $ENV{HOME}/include/opt++)
+            /usr/local/include /usr/local/include/opt++ $ENV{PREFIX}/include
+            $ENV{PREFIX}/include/opt++ $ENV{HOME}/include $ENV{HOME}/include/opt++)
     FIND_PATH(NEWMAT_INCLUDE_PATH newmat.h /usr/include /usr/include/opt++
               /usr/include/newmat /usr/local/include/newmat
-              /usr/local/include /usr/local/include/opt++ $ENV{HOME}/include
-             $ENV{HOME}/include/opt++)
+              /usr/local/include /usr/local/include/opt++ $ENV{PREFIX}/include
+              $ENV{PREFIX}/include/opt++ $ENV{HOME}/include $ENV{HOME}/include/opt++)
     FIND_LIBRARY(OPTPP_LIBRARY NAMES opt-linux PATHS /usr/lib /usr/local/lib)
     FIND_LIBRARY(NEWMAT_LIBRARY NAMES newmat-linux PATHS /usr/lib /usr/local/lib)
 
