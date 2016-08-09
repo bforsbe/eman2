@@ -23,9 +23,8 @@ FOREACH(f ${e2programs})
 ENDFOREACH(f)
 
 INSTALL(PROGRAMS ${e2programs}
-  DESTINATION    bin
+	DESTINATION bin
 )
-
 #INSTALL(PROGRAMS    e2boxer.py 
 #                    e2version.py 
 #                    e2ctf.py 
@@ -37,13 +36,10 @@ INSTALL(PROGRAMS ${e2programs}
 IF(WIN32)
 	INSTALL(FILES e2boxer.py
 		DESTINATION bin
-		RENAME	e2boxer.pyw
-		)
-		
+		RENAME e2boxer.pyw)
 	INSTALL(FILES e2display.py
 		DESTINATION bin
-		RENAME	e2display.pyw
-		)
+		RENAME e2display.pyw)
 ENDIF(WIN32)
 
 # INSTALL(PROGRAMS e2ctf_auto.py
