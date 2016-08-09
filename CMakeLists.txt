@@ -201,6 +201,8 @@ ENDIF(ENABLE_IOCACHE)
 # ENDIF(ENABLE_HDFIOCACHE)
 
 SET(INCLUDE_DIRS
+	${CMAKE_SOURCE_DIR}/libEM
+	${CMAKE_SOURCE_DIR}/libpyEM
 	$ENV{PREFIX}/include
 	)
 
@@ -210,21 +212,12 @@ SET(LIB_DIRS
 
 
 MACRO(CHECK_REQUIRED_LIB2 upper lower header lower2 header2)
-    FIND_PATH(${upper}_INCLUDE_PATH ${header} $ENV{${upper}DIR}/include ${INCLUDE_DIRS})
-    IF(${upper}_INCLUDE_PATH)
-    ELSE (${upper}_INCLUDE_PATH)
-		FIND_PATH(${upper}_INCLUDE_PATH ${header2} $ENV{${upper}DIR}/include ${INCLUDE_DIRS})
-    ENDIF(${upper}_INCLUDE_PATH)
-
-    IF(${upper}_INCLUDE_PATH)
-		FIND_LIBRARY(${upper}_LIBRARY NAMES ${lower} ${lower2} PATHS $ENV{${upper}DIR}/lib ${LIB_DIRS})
-		IF(${upper}_LIBRARY)
-		ELSE(${upper}_LIBRARY)
-			#MESSAGE(SEND_ERROR "ERROR: ${upper} not found. please install ${upper} first!")
-		ENDIF(${upper}_LIBRARY)
-    ELSE(${upper}_INCLUDE_PATH)
-		#MESSAGE(SEND_ERROR "ERROR: ${upper} not found. please install ${upper} first!")
-    ENDIF(${upper}_INCLUDE_PATH)
+    FIND_PATH(${upper}_INCLUDE_PATH ${header} ${INCLUDE_DIRS})
+    IF(NOT ${upper}_INCLUDE_PATH)
+		    FIND_PATH(${upper}_INCLUDE_PATH ${header2} ${INCLUDE_DIRS})
+    ELSE()
+		    FIND_LIBRARY(${upper}_LIBRARY NAMES ${lower} ${lower2})
+    ENDIF()
 ENDMACRO(CHECK_REQUIRED_LIB2)
 
 MACRO(CHECK_REQUIRED_LIB upper lower header)
