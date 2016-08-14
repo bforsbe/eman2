@@ -1,2 +1,2 @@
-INSTALL(FILES DejaVuSerif.ttf readme.txt
-    	DESTINATION fonts)
+INSTALL(FILES DejaVuSerif.ttf readme.txt DESTINATION ${CMAKE_INSTALL_PREFIX}/EMAN2/fonts)
+INSTALL(FILES DejaVuSerif.ttf readme.txt DESTINATION ${CMAKE_INSTALL_PREFIX}/sparx/fonts)

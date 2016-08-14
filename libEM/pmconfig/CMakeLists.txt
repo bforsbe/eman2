@@ -1,4 +1,4 @@
 FILE(GLOB pmfiles "${CMAKE_CURRENT_SOURCE_DIR}/*.*")
 INSTALL(FILES ${pmfiles}
-  DESTINATION    lib/pmconfig
+	DESTINATION    ${CMAKE_INSTALL_PREFIX}/EMAN2/pmconfig
 )

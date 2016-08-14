@@ -49,7 +49,7 @@ ENDIF(WIN32)
 # MESSAGE("Installed e2ctf_auto.py in bin manually (failed earlier for some reason.")
 
 # string(TIMESTAMP date "%Y-%m-%d %H:%M")
-# install (CODE "execute_process(COMMAND sed -i.bk \"s/BUILD_DATE/${date}/g\" ${EMAN_INSTALL_PREFIX}/bin/e2version.py)")
-# install (CODE "execute_process(COMMAND rm ${EMAN_INSTALL_PREFIX}/bin/e2version.py.bk)")
+# install (CODE "execute_process(COMMAND sed -i.bk \"s/BUILD_DATE/${date}/g\" ${CMAKE_INSTALL_PREFIX}/bin/e2version.py)")
+# install (CODE "execute_process(COMMAND rm ${CMAKE_INSTALL_PREFIX}/bin/e2version.py.bk)")
 
 INSTALL (CODE "execute_process(COMMAND e2postinstallscript.py)")

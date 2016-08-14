@@ -1,4 +1,4 @@
 FILE(GLOB headerfiles "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 INSTALL(FILES ${headerfiles}
-  	DESTINATION    ${EMAN_INSTALL_PREFIX}/include/gorgon
+  	DESTINATION    ${CMAKE_INSTALL_PREFIX}/EMAN2/include/gorgon
 )

@@ -4,7 +4,7 @@ FILE(GLOB exclusionlist "em3Dhelloworld.py")
 # MESSAGE("gui files: ${qtguifiles}")
 
 LIST(REMOVE_ITEM qtguifiles ${exclusionlist})
-
+INSTALL(FILES ${qtguifiles} DESTINATION ${CMAKE_INSTALL_PREFIX}/EMAN2)
 # MESSAGE("reduced gui files: ${qtguifiles}")
 
 # INSTALL(FILES ${qtguifiles} DESTINATION lib)
