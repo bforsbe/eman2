@@ -33,7 +33,7 @@
 
 import sys
 from EMAN2 import *
-from EMAN2db import db_open_dict
+from EMAN2.EMAN2db import db_open_dict
 
 if len(sys.argv)==1 :
 	print "Please provide the name of a refine_xx directory to extract FSC curves from"

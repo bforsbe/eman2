@@ -37,9 +37,9 @@
 from EMAN2 import *
 from math import *
 from PyQt4 import QtCore
-from emapplication import EMApp
+from EMAN2.emapplication import EMApp
 from emimage2d import EMImage2DWidget
-from emshape import EMShape
+from EMAN2.emshape import EMShape
 
 
 def main():

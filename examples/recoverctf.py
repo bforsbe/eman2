@@ -33,7 +33,7 @@
 
 import sys
 from EMAN2 import *
-from EMAN2db import *
+from EMAN2.EMAN2db import *
 
 # This program will extract CTF parameters from the headers of phase-flipped particles to restore a corrupted
 # bdb:e2ctf.parms database.
