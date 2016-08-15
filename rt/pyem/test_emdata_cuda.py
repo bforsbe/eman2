@@ -33,7 +33,7 @@
 
 import EMAN2
 from EMAN2 import *
-from pyemtbx.exceptions import *
+from EMAN2.pyemtbx.exceptions import *
 import unittest
 import testlib
 import sys
