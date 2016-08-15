@@ -33,6 +33,9 @@ from filter          import *
 from projection      import *
 from fundamentals    import *
 from statistics      import *
+import os
+os.environ["SPARXDIR"] = os.path.dirname(os.path.abspath(__file__))
+
 from alignment       import *
 from morphology      import *
 from reconstruction  import *
