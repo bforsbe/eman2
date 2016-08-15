@@ -37,13 +37,13 @@ from OpenGL import GL,GLU,GLUT
 from EMAN2 import Util,EMUtil,file_exists,IMAGE_UNKNOWN,gimme_image_dimensions3D,EMData
 import os
 from EMAN2 import Transform
-from emscene3d import EMScene3D
-from emdataitem3d import EMDataItem3D, EMIsosurface
+from EMAN2.emscene3d import EMScene3D
+from EMAN2.emdataitem3d import EMDataItem3D, EMIsosurface
 
 def image_update():
 	from emimage2d import EMImage2DWidget
-	from emimagemx import EMImageMXWidget
-	from emimage3d import EMImage3DWidget
+	from EMAN2.emimagemx import EMImageMXWidget
+	from EMAN2.emimage3d import EMImage3DWidget
 	for i in EMImage2DWidget.allim.keys():
 		try:
 			if i.isVisible() and i.data["changecount"] !=i.image_change_count:
@@ -104,7 +104,7 @@ class EMImageWidget(object):
 			return None
 		
 		if force_plot or (isinstance(data,EMData) and data.get_zsize()==1 and data.get_ysize()==1):
-			from emplot2d import EMPlot2DWidget
+			from EMAN2.emplot2d import EMPlot2DWidget
 			if old:
 				if isinstance(old,EMPlot2DWidget) :
 					old.set_data(data,remove_directories_from_name(filename),replace)
@@ -132,7 +132,7 @@ class EMImageWidget(object):
 			return widget
 
 		elif isinstance(data,list) and isinstance(data[0],EMData):
-			from emimagemx import EMImageMXWidget
+			from EMAN2.emimagemx import EMImageMXWidget
 			if old:
 				if isinstance(old,EMImageMXWidget) :
 					old.set_data(data,filename)
@@ -141,7 +141,7 @@ class EMImageWidget(object):
 			widget.set_data(data,filename)
 			return widget
 		elif isinstance(data,list):
-			from emplot3d import EMPlot3DWidgetNew
+			from EMAN2.emplot3d import EMPlot3DWidgetNew
 			if (isinstance(data[0],list) or isinstance(data[0],tuple)) and len(data) > 2:
 				if old:
 					if isinstance(old,EMPlot3DWidgetNew) :
@@ -152,7 +152,7 @@ class EMImageWidget(object):
 				widget.set_data(data,remove_directories_from_name(filename),replace)
 				return widget	
 			else:
-				from emplot2d import EMPlot2DWidget
+				from EMAN2.emplot2d import EMPlot2DWidget
 				if old:
 					if isinstance(old,EMPlot2DWidget) :
 						old.set_data(data,remove_directories_from_name(filename),replace)
@@ -187,7 +187,7 @@ class EMWidgetFromFile(object):
 			return None
 		
 		if force_plot:
-			from emplot2d import EMPlot2DWidget
+			from EMAN2.emplot2d import EMPlot2DWidget
 			if isinstance(old,EMPlot2DWidget): widget = old
 			else: widget = EMPlot2DWidget(application=application)
 			widget.set_data_from_file(filename)
@@ -217,7 +217,7 @@ class EMWidgetFromFile(object):
 					if isinstance(old,EMImage2DWidget): widget = old
 					else: widget= EMImage2DWidget(application=application)
 				else:
-					from emplot2d import EMPlot2DWidget
+					from EMAN2.emplot2d import EMPlot2DWidget
 					if isinstance(old,EMPlot2DWidget): widget = old
 					else: widget = EMPlot2DWidget(application=application)
 					widget.set_data_from_file(filename)
@@ -235,7 +235,7 @@ class EMWidgetFromFile(object):
 				return widget
 				
 			elif data == None or isinstance(data,list):
-				from emimagemx import EMImageMXWidget
+				from EMAN2.emimagemx import EMImageMXWidget
 				if isinstance(old,EMImageMXWidget): widget = old
 				else: widget = EMImageMXWidget(application=application)
 				data = filename
@@ -245,7 +245,7 @@ class EMWidgetFromFile(object):
 			widget.set_data(data,filename)
 			return widget
 		else:
-			from emplot2d import EMPlot2DWidget
+			from EMAN2.emplot2d import EMPlot2DWidget
 			if isinstance(old,EMPlot2DWidget): widget = old
 			else: widget = EMPlot2DWidget(application=application)
 			widget.set_data_from_file(filename)

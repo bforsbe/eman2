@@ -37,11 +37,11 @@ from PyQt4.QtCore import Qt
 from OpenGL import GL,GLU,GLUT
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 from math import *
 from EMAN2 import *
 from time import *
-from emglobjects import EM3DModel, Camera2,get_default_gl_colors,EMViewportDepthTools2
+from EMAN2.emglobjects import EM3DModel, Camera2,get_default_gl_colors,EMViewportDepthTools2
 
 MAG_INCREMENT_FACTOR = 1.1
 
@@ -517,8 +517,8 @@ class EMHelloWorldInspector(QtGui.QWidget):
 		
 # This is just for testing, of course
 if __name__ == '__main__':
-	from emapplication import EMApp
-	from emimage3d import EMImage3DWidget
+	from EMAN2.emapplication import EMApp
+	from EMAN2.emimage3d import EMImage3DWidget
 	em_app = EMApp()
 	window = EMImage3DWidget()
 	hello_world = EM3DHelloWorld(window)

@@ -37,12 +37,12 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from PyQt4 import QtCore, QtGui, QtOpenGL
 from PyQt4.QtCore import Qt
-from emapplication import EMApp, get_application
-from emglobjects import EM3DModel, EMGLWidget, Camera, Camera2, EMViewportDepthTools2, EMGLProjectionViewMatrices, get_default_gl_colors
-from emimageutil import EMTransformPanel
+from EMAN2.emapplication import EMApp, get_application
+from EMAN2.emglobjects import EM3DModel, EMGLWidget, Camera, Camera2, EMViewportDepthTools2, EMGLProjectionViewMatrices, get_default_gl_colors
+from EMAN2.emimageutil import EMTransformPanel
 from math import *
 from time import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 from weakref import WeakKeyDictionary
 import weakref
 
