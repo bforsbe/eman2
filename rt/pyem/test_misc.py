@@ -33,7 +33,7 @@
 
 from EMAN2 import *
 import unittest
-from pyemtbx.exceptions import *
+from EMAN2.pyemtbx.exceptions import *
 import testlib
 import sys
 from optparse import OptionParser
