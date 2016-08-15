@@ -31,15 +31,15 @@
 #
 
 from EMAN2 import PDBReader, get_image_directory
-from libpyGLUtils2 import *
+from EMAN2.libpyGLUtils2 import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from emglobjects import EM3DModel, get_default_gl_colors, EMViewportDepthTools, Camera2
+from EMAN2.emglobjects import EM3DModel, get_default_gl_colors, EMViewportDepthTools, Camera2
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import Qt
 import sys
 import weakref
-from emimageutil import EMTransformPanel
+from EMAN2.emimageutil import EMTransformPanel
 
 
 
@@ -1031,8 +1031,8 @@ class EMPDBInspector(QtGui.QWidget):
 		self.rotation_sliders.set_xyz_trans(x,y,z)
 
 if __name__ == '__main__':
-	from emapplication import EMApp
-	from emimage3d import EMImage3DWidget
+	from EMAN2.emapplication import EMApp
+	from EMAN2.emimage3d import EMImage3DWidget
 	em_app = EMApp()
 
 	window = EMImage3DWidget()

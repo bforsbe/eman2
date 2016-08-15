@@ -32,17 +32,17 @@
 #
 
 from EMAN2 import *
-from embrowser import EMBrowserWidget
-from emglobjects import EMViewportDepthTools, Camera2, get_default_gl_colors, get_RGB_tab, EM3DModel
-from emglobjects import get_default_gl_colors
-from emimageutil import ImgHistogram
-from emitem3d import EMItem3D, EMItem3DInspector, drawBoundingBox
-from emshapeitem3d import EMInspectorControlShape
-from libpyGLUtils2 import GLUtil
+from EMAN2.embrowser import EMBrowserWidget
+from EMAN2.emglobjects import EMViewportDepthTools, Camera2, get_default_gl_colors, get_RGB_tab, EM3DModel
+from EMAN2.emglobjects import get_default_gl_colors
+from EMAN2.emimageutil import ImgHistogram
+from EMAN2.emitem3d import EMItem3D, EMItem3DInspector, drawBoundingBox
+from EMAN2.emshapeitem3d import EMInspectorControlShape
+from EMAN2.libpyGLUtils2 import GLUtil
 import math
 import os.path
 import sys
-from valslider import ValSlider, EMLightControls, CameraControls, EMSpinWidget, EMQTColorWidget, EMANToolButton
+from EMAN2.valslider import ValSlider, EMLightControls, CameraControls, EMSpinWidget, EMQTColorWidget, EMANToolButton
 
 from OpenGL import GL
 from OpenGL.GL import *
