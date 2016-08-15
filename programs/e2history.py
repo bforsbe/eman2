@@ -38,7 +38,7 @@
 import shelve
 import sys,os,time
 from EMAN2 import base_name, EMArgumentParser
-import EMAN2db
+import EMAN2.EMAN2db as EMAN2db
 
 # also defined in EMAN2, but we don't want to have to import it
 
@@ -57,7 +57,7 @@ def main():
 	(options, args) = parser.parse_args()
 	
 	if options.gui:
-		from emapplication import EMApp
+		from EMAN2.emapplication import EMApp
 		app = EMApp()
 		hist = HistoryForm(app,os.getcwd())
 		app.show()
@@ -72,7 +72,7 @@ class HistoryForm:
 		'''
 		self.wd = wd
 		
-		from emform import EMFormWidget
+		from EMAN2.emform import EMFormWidget
 		self.form = EMFormWidget(params=self.get_history_table())
 		self.form.setWindowTitle("EMAN2 history")
 		
@@ -84,9 +84,9 @@ class HistoryForm:
 		
 		
  	def get_history_table(self):
- 		from emdatastorage import ParamDef
+ 		from EMAN2.emdatastorage import ParamDef
  		try:
-			import EMAN2db
+			import EMAN2.EMAN2db as EMAN2db
 			db=EMAN2db.EMAN2DB.open_db()
 			db.open_dict("history")
 		except:
@@ -102,7 +102,7 @@ class HistoryForm:
 		if db == None or n == 0:
 			params.append(ParamDef(name="blurb",vartype="text",desc_short="",desc_long="",property=None,defaultunits="There appears to be no history in this directory",choices=None))
 		else:
-			from emform import EMParamTable
+			from EMAN2.emform import EMParamTable
 			start = []
 			duration = []
 			prgargs = []
@@ -194,7 +194,7 @@ def time_diff(secs):
 def print_to_std_out(all):
 
 	try:
-		import EMAN2db
+		import EMAN2.EMAN2db as EMAN2db
 		db=EMAN2db.EMAN2DB.open_db()
 		db.open_dict("history")
 	except:

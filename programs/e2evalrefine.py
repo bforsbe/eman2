@@ -33,6 +33,7 @@
 
 
 from EMAN2 import *
+from EMAN2.EMAN2db import db_open_dict
 from math import *
 import os
 import sys

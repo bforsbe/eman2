@@ -32,7 +32,7 @@
 #
 
 from EMAN2 import *
-from EMAN2db import db_open_dict, db_close_dict, db_check_dict, db_list_dicts
+from EMAN2.EMAN2db import db_open_dict, db_close_dict, db_check_dict, db_list_dicts
 from OpenGL import GL,GLUT
 from math import *
 import os
@@ -47,13 +47,13 @@ try:
 	from PyQt4 import QtCore, QtGui, QtOpenGL
 	from PyQt4.QtCore import Qt
 	from PyQt4.QtCore import QTimer
-	from emshape import *
-	from valslider import *
+	from EMAN2.emshape import *
+	from EMAN2.valslider import *
 except:
 	print "Warning: PyQt4 must be installed"
 	sys.exit(1)
 
-from Simplex import Simplex
+from EMAN2.Simplex import Simplex
 
 
 
@@ -93,7 +93,7 @@ power spectrum in various ways."""
 
 	logid=E2init(sys.argv,options.ppid)
 
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	app=EMApp()
 	gui=GUIEvalImage(args,options.voltage,options.apix,options.cs,options.ac,options.box,options.usefoldername,options.constbfactor,options.astigmatism)
 	gui.show()
@@ -125,7 +125,7 @@ class GUIEvalImage(QtGui.QWidget):
 			print "Cannot import EMAN image GUI objects (EMImage2DWidget)"
 			sys.exit(1)
 		try:
-			from emplot2d import EMPlot2DWidget
+			from EMAN2.emplot2d import EMPlot2DWidget
 		except:
 			print "Cannot import EMAN plot GUI objects (is matplotlib installed?)"
 			sys.exit(1)

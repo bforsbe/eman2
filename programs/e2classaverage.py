@@ -43,7 +43,7 @@ import traceback
 
 READ_HEADER_ONLY = True
 
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 
 def main():
 	progname = os.path.basename(sys.argv[0])
@@ -145,7 +145,7 @@ def main():
 
 	# Initialize parallelism
 	if options.parallel :
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 		etc=EMTaskCustomer(options.parallel)
 		pclist=[options.input]
 		if options.ref: pclist.append(options.ref)

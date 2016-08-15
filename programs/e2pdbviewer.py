@@ -30,9 +30,9 @@
 #
 
 from EMAN2 import *
-from emapplication import EMApp
-from emdataitem3d import EMStructureItem3D
-from emscene3d import EMScene3D, EMInspector3D
+from EMAN2.emapplication import EMApp
+from EMAN2.emdataitem3d import EMStructureItem3D
+from EMAN2.emscene3d import EMScene3D, EMInspector3D
 import os
 import sys
 

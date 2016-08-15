@@ -3,9 +3,9 @@
 from EMAN2 import *
 import numpy as np
 import random
-from emapplication import EMApp
-from emimage import EMImageWidget
-from emboxerbase import *
+from EMAN2.emapplication import EMApp
+from EMAN2.emimage import EMImageWidget
+from EMAN2.emboxerbase import *
 import shutil
 
 

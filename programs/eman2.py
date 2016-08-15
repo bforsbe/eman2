@@ -49,7 +49,7 @@ If you are just getting started with EMAN2, here are some tips:
 """
 
 from e2version import EMANVERSION,DATESTAMP
-from emapplication import EMApp
+from EMAN2.emapplication import EMApp
 
 helpstring+="\n\nYou are currently running %s (%s)"%(EMANVERSION,DATESTAMP[6:-2])
 

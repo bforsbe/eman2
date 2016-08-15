@@ -33,7 +33,7 @@
 
 import pprint
 from EMAN2 import *
-from EMAN2db import db_open_dict
+from EMAN2.EMAN2db import db_open_dict
 import sys
 
 def get_data_type_string(datatype):

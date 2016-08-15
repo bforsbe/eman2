@@ -31,16 +31,16 @@
 #
 #
 
-from emapplication import EMApp, get_application
-from emimage3dsym import EM3DSymModel,EMSymInspector
+from EMAN2.emapplication import EMApp, get_application
+from EMAN2.emimage3dsym import EM3DSymModel,EMSymInspector
 from e2eulerxplor import InputEventsManager
 import os,sys
 from EMAN2 import *
 from PyQt4 import QtGui,QtCore
 from e2eulerxplor import get_eulers_from
-from emimagemx import EMImageMXModule
-from emplot2d import EMPlot2DModule
-from valslider import ValSlider
+from EMAN2.emimagemx import EMImageMXModule
+from EMAN2.emplot2d import EMPlot2DModule
+from EMAN2.valslider import ValSlider
 
 	
 def main():
