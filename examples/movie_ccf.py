@@ -5,7 +5,7 @@ from sys import argv
 import sys
 import threading
 import Queue
-from Simplex import Simplex
+from EMAN2.Simplex import Simplex
 from numpy import array
 from time import sleep,time
 

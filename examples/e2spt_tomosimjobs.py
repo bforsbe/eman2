@@ -43,7 +43,7 @@ import colorsys
 import os
 import math
 
-from mpl_toolkits.mplot3d import Axes3D
+from EMAN2.mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 import matplotlib
