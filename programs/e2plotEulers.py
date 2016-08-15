@@ -31,8 +31,8 @@
 #
 
 from EMAN2 import *
-from emplot2d import EMPolarPlot2DWidget,colortypes
-from emapplication import EMApp
+from EMAN2.emplot2d import EMPolarPlot2DWidget,colortypes
+from EMAN2.emapplication import EMApp
 import math
 
 def main():

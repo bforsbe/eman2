@@ -38,7 +38,7 @@ from math import *
 import os
 import sys
 from e2simmx import cmponetomany
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 
 def main():
 	progname = os.path.basename(sys.argv[0])
@@ -131,7 +131,7 @@ def main():
 		p.write_image(particles_name,i)
 
 	# parallelism
-	from EMAN2PAR import EMTaskCustomer			# we need to put this here to avoid a circular reference
+	from EMAN2.EMAN2PAR import EMTaskCustomer # we need to put this here to avoid a circular reference
 
 	etc=EMTaskCustomer(options.parallel)
 	pclist=[particles_name]

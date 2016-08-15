@@ -33,13 +33,13 @@
 
 # $Id: e2proc2dmulti.py
 
-from EMAN2db import db_list_dicts
+from EMAN2.EMAN2db import db_list_dicts
 from EMAN2 import *
 import sys
 import os.path
 import math
 import random
-import pyemtbx.options
+from EMAN2.pyemtbx import options
 import time
 
 def main():

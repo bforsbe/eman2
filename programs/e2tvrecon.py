@@ -36,7 +36,7 @@ import time
 import copy
 import numpy as np
 
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 
 
 def get_usage():
@@ -146,7 +146,7 @@ def main():
 	if options.verbose:
 		print "\n\n(e2tvrecon.py) INITIALIZING PARALLELISM\n\n"
 		
-	from EMAN2PAR import EMTaskCustomer
+	from EMAN2.EMAN2PAR import EMTaskCustomer
 	etc=EMTaskCustomer(options.parallel)
 
 	tasks=[]

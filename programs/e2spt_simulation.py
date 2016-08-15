@@ -33,7 +33,7 @@ Author: Jesus Galaz - 2011, Last update: Oct/2016
 
 from optparse import OptionParser
 from EMAN2 import *
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 
 import sys
 import numpy
@@ -608,7 +608,7 @@ def subtomosim(options,ptcls,outname,dimension):
 	if options.parallel :
 		print "\n\n(e2spt_simulation.py) INITIALIZING PARALLELISM, for this outname (stack, or reference)", outname
 		print "\n\n"
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 		etc=EMTaskCustomer(options.parallel)
 	
 	if options.verbose:

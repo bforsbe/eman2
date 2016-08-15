@@ -43,7 +43,7 @@ try:
 	if get_platform()=="Linux" and os.getenv("DISPLAY")==None: raise Exception
 
 	from PyQt4 import QtCore, QtGui, QtOpenGL
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	import IPython.lib.inputhook
 #	import IPython.lib.guisupport
 
@@ -56,7 +56,7 @@ try:
 	#if not IPython.lib.guisupport.is_event_loop_running_qt4():
 		#IPython.lib.guisupport.start_event_loop_qt4()
 	
-	from emimage import image_update
+	from EMAN2.emimage import image_update
 
 	def ipy_on_timer():
 		image_update()

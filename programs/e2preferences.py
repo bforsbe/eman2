@@ -30,11 +30,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston MA 02111-1307 USA
 #
 #
-import EMAN2db
-from emdatastorage import ParamDef 
+import EMAN2.EMAN2db as EMAN2db
+from EMAN2.emdatastorage import ParamDef 
 
-from emsprworkflow import WorkFlowTask
-from emapplication import get_application
+from EMAN2.emsprworkflow import WorkFlowTask
+from EMAN2.emapplication import get_application
 
 global HOMEDB
 HOMEDB=EMAN2db.EMAN2DB.open_db()
@@ -86,7 +86,7 @@ class EMPreferencesTask(WorkFlowTask):
 		self.emit(QtCore.SIGNAL("task_idle"))
 	
 	def run_form(self):
-		from emform import EMTableFormWidget
+		from EMAN2.emform import EMTableFormWidget
 		self.form = EMTableFormWidget(self.get_params())
 		self.form.resize(*self.preferred_size)
 		self.form.setWindowTitle(self.window_title)
@@ -113,7 +113,7 @@ class EMPreferencesTask(WorkFlowTask):
 			
 		
 def main():
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 
 	em_app = EMApp()
 	

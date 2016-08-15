@@ -40,14 +40,14 @@ import weakref
 import threading
 
 from EMAN2 import *
-from emapplication import get_application, EMApp
+from EMAN2.emapplication import get_application, EMApp
 from emimage2d import EMImage2DWidget
-from emplot2d import EMPlot2DWidget
-from emimagemx import EMImageMXWidget
-from emscene3d import EMScene3D
-from emdataitem3d import EMDataItem3D, EMIsosurface, EMSliceItem3D
-from emshape import EMShape
-from valslider import *
+from EMAN2.emplot2d import EMPlot2DWidget
+from EMAN2.emimagemx import EMImageMXWidget
+from EMAN2.emscene3d import EMScene3D
+from EMAN2.emdataitem3d import EMDataItem3D, EMIsosurface, EMSliceItem3D
+from EMAN2.emshape import EMShape
+from EMAN2.valslider import *
 import traceback
 
 def main():

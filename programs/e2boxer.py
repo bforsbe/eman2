@@ -32,7 +32,7 @@
 #
 
 from EMAN2 import *
-from EMAN2jsondb import *
+from EMAN2.EMAN2jsondb import *
 import Queue
 import os,sys
 
@@ -44,10 +44,10 @@ try:
 	from PyQt4 import QtCore, QtGui
 	from PyQt4.QtCore import Qt
 	from emimage2d import EMImage2DWidget
-	from emplot2d import EMPlot2DWidget
-	from emimagemx import EMImageMXWidget
-	from valslider import ValSlider,CheckBox,ValBox
-	from emshape import EMShape
+	from EMAN2.emplot2d import EMPlot2DWidget
+	from EMAN2.emimagemx import EMImageMXWidget
+	from EMAN2.valslider import ValSlider,CheckBox,ValBox
+	from EMAN2.emshape import EMShape
 except:
 	QtGui=nothing()
 	QtCore=nothing()
@@ -260,7 +260,7 @@ def main():
 			print "====================================="
 			print "ERROR: GUI mode unavailable without PyQt4"
 			sys.exit(1)
-		from emapplication import EMApp
+		from EMAN2.emapplication import EMApp
 		app=EMApp()
 		gui=GUIBoxer(args,options.voltage,options.apix,options.cs,options.ac,options.boxsize,options.ptclsize,options.threads)
 		gui.show()
