@@ -35,7 +35,7 @@ from EMAN2.EMAN2jsondb import js_open_dict
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QChar, QString, Qt
 from EMAN2.emapplication import EMApp
-from emimage2d import *
+from EMAN2.emimage2d import *
 from EMAN2.emimagemx import *
 from EMAN2.empdbitem3d import *
 from EMAN2.emplot2d import *

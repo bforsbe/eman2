@@ -40,7 +40,7 @@ import os
 try:
 	from PyQt4 import QtGui, QtCore
 	from EMAN2.emapplication import EMApp, get_application
-	from emimage2d import EMImage2DWidget
+	from EMAN2.emimage2d import EMImage2DWidget
 	from EMAN2.emselector import EMSelectorDialog
 	from EMAN2.emshape import EMShape, EMShapeDict
 	

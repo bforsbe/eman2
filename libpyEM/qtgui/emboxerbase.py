@@ -2122,7 +2122,7 @@ class EMBoxerModule(EMBoxerModuleVitals, PyQt4.QtCore.QObject):
 		get_application().setOverrideCursor(QtCore.Qt.ArrowCursor)
 
 	def __init_main_2d_window(self):
-		from emimage2d import EMImage2DWidget
+		from EMAN2.emimage2d import EMImage2DWidget
 		if self.main_2d_window == None:
 
 			self.main_2d_window= EMImage2DWidget(application=get_application())

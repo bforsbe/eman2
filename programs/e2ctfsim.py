@@ -101,7 +101,7 @@ class GUIctfsim(QtGui.QWidget):
 		"""CTF simulation dialog
 		"""
 		try:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 		except:
 			print "Cannot import EMAN image GUI objects (EMImage2DWidget)"
 			sys.exit(1)

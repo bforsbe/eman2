@@ -39,7 +39,7 @@ try:
 	from EMAN2.emshape import *
 	from EMAN2.valslider import ValSlider,ValBox
 	from EMAN2.emimage import EMImageWidget
-	from emimage2d import EMImage2DWidget
+	from EMAN2.emimage2d import EMImage2DWidget
 	from EMAN2.emplot2d import EMPlot2DWidget
 	from EMAN2.emapplication import EMApp
 except:

@@ -41,7 +41,7 @@ import threading
 
 from EMAN2 import *
 from EMAN2.emapplication import get_application, EMApp
-from emimage2d import EMImage2DWidget
+from EMAN2.emimage2d import EMImage2DWidget
 from EMAN2.emplot2d import EMPlot2DWidget
 from EMAN2.emimagemx import EMImageMXWidget
 from EMAN2.emscene3d import EMScene3D

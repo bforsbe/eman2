@@ -32,6 +32,7 @@
 #
 
 from EMAN2 import EMANVERSION, E2init, E2end, EMData, base_name, file_exists, EMArgumentParser
+import EMAN2.EMAN2db as EMAN2db
 from EMAN2.emapplication import EMApp
 import EMAN2.embrowser as embrowser
 from EMAN2.emimage import EMImageWidget, EMWidgetFromFile

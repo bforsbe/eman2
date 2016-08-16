@@ -43,7 +43,7 @@ class nothing:
 try: 
 	from PyQt4 import QtCore, QtGui
 	from PyQt4.QtCore import Qt
-	from emimage2d import EMImage2DWidget
+	from EMAN2.emimage2d import EMImage2DWidget
 	from EMAN2.emplot2d import EMPlot2DWidget
 	from EMAN2.emimagemx import EMImageMXWidget
 	from EMAN2.valslider import ValSlider,CheckBox,ValBox
