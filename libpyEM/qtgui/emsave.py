@@ -34,7 +34,7 @@
 from PyQt4.QtCore import Qt
 from PyQt4 import QtGui,QtCore
 from EMAN2 import EMData, file_exists, gimme_image_dimensions3D,get_image_directory,EMUtil,base_name,gm_time_string
-from EMAN2db import db_check_dict, db_remove_dict
+from EMAN2.EMAN2db import db_check_dict, db_remove_dict
 import os
 # For example usage see http://blake.bcm.edu/emanwiki/EMAN2ImageFormats#SavingEMDatafromPython
 
@@ -228,7 +228,7 @@ class EMSingleImageSaveDialog(EMFileSaver):
 		
 		self.validator = EMSaveImageValidator([item])
 		self.__item = item
-		from emselector import EMSelectorDialog
+		from EMAN2.emselector import EMSelectorDialog
 		selector = EMSelectorDialog(True,True)
 		selector.set_validator(self.validator)
 		file = selector.exec_()
@@ -395,7 +395,7 @@ class EMStackSaveDialog(EMFileSaver):
 			raise RuntimeError("item_list must be a list of EMData instances, a list of ListWidgetItems, or an EMDataListCache")
 
 		self.__item_list = item_list
-		from emselector import EMSelectorDialog
+		from EMAN2.emselector import EMSelectorDialog
 		selector = EMSelectorDialog(True,True)
 		self.validator = EMSaveImageValidator(item_list)
 		selector.set_validator(self.validator)

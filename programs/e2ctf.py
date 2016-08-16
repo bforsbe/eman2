@@ -35,7 +35,7 @@
 # This is a program for determining CTF parameters and (optionally) phase flipping images
 
 from EMAN2 import *
-from EMAN2db import db_open_dict, db_close_dict, db_check_dict, db_list_dicts
+from EMAN2.EMAN2db import db_open_dict, db_close_dict, db_check_dict, db_list_dicts
 from optparse import OptionParser
 from math import *
 import os
@@ -46,7 +46,7 @@ from numpy import array,arange
 import numpy
 import threading
 
-from Simplex import Simplex
+from EMAN2.Simplex import Simplex
 
 debug=False
 logid=None
@@ -253,7 +253,7 @@ NOTE: This program should be run from the project directory, not from within the
 		if len(img_sets) == 0:
 			E2end(logid)
 			exit(1)
-		from emapplication import EMApp
+		from EMAN2.emapplication import EMApp
 		app=EMApp()
 		gui=GUIctf(app,img_sets,options.autohp,options.nosmooth)
 		gui.show_guis()
@@ -2221,8 +2221,8 @@ try:
 	from PyQt4 import QtCore, QtGui, QtOpenGL
 	from PyQt4.QtCore import Qt
 	from OpenGL import GL,GLUT
-	from emshape import *
-	from valslider import ValSlider,CheckBox
+	from EMAN2.emshape import *
+	from EMAN2.valslider import ValSlider,CheckBox
 except:
 	print "Warning: PyQt4 must be installed to use the --gui option"
 	class dummy:
@@ -2262,12 +2262,12 @@ class GUIctf(QtGui.QWidget):
 		'data' is a list of (filename,EMAN2CTF,im_1d,bg_1d,im_2d,bg_2d,qual,bg_1d_low)
 		"""
 		try:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 		except:
 			print "Cannot import EMAN image GUI objects (EMImage2DWidget)"
 			sys.exit(1)
 		try:
-			from emplot2d import EMPlot2DWidget
+			from EMAN2.emplot2d import EMPlot2DWidget
 		except:
 			print "Cannot import EMAN plot GUI objects (is matplotlib installed?)"
 			sys.exit(1)
@@ -2512,7 +2512,7 @@ class GUIctf(QtGui.QWidget):
 		self.newSet(self.curset)
 
 	def on_output(self):
-		from emsprworkflow import E2CTFOutputTaskGeneral
+		from EMAN2.emsprworkflow import E2CTFOutputTaskGeneral
 
 		n = self.setlist.count()
 		names = [str(self.setlist.item(i).text()) for i in xrange(0,n)]

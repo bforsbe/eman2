@@ -33,17 +33,17 @@
 
 from EMAN2 import *
 import copy
-from emapplication import EMGLWidget
-from emdataitem3d import *
-from emglobjects import get_default_gl_colors
-from emitem3d import EMItem3D, EMItem3DInspector
-from empdbitem3d import *
-from emshapeitem3d import *
-from libpyGLUtils2 import GLUtil
+from EMAN2.emapplication import EMGLWidget
+from EMAN2.emdataitem3d import *
+from EMAN2.emglobjects import get_default_gl_colors
+from EMAN2.emitem3d import EMItem3D, EMItem3DInspector
+from EMAN2.empdbitem3d import *
+from EMAN2.emshapeitem3d import *
+from EMAN2.libpyGLUtils2 import GLUtil
 import math
 import os
 import pickle
-from valslider import ValSlider, EMLightControls, CameraControls, EMSpinWidget, EMQTColorWidget, EMANToolButton
+from EMAN2.valslider import ValSlider, EMLightControls, CameraControls, EMSpinWidget, EMQTColorWidget, EMANToolButton
 import weakref
 
 from OpenGL import GLU

@@ -32,17 +32,17 @@
 #
 
 from EMAN2 import get_image_directory, Transform, Region, EMANVERSION, EMData, E2init, E2end, EMArgumentParser
-from EMAN2db import db_open_dict, db_check_dict, db_close_dict
+from EMAN2.EMAN2db import db_open_dict, db_check_dict, db_close_dict
 from math import *
 import sys
 import os
 
 try:
 	from PyQt4 import QtGui, QtCore
-	from emapplication import EMApp, get_application
-	from emimage2d import EMImage2DWidget
-	from emselector import EMSelectorDialog
-	from emshape import EMShape, EMShapeDict
+	from EMAN2.emapplication import EMApp, get_application
+	from EMAN2.emimage2d import EMImage2DWidget
+	from EMAN2.emselector import EMSelectorDialog
+	from EMAN2.emshape import EMShape, EMShapeDict
 	
 	ENABLE_GUI = True
 	

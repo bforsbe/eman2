@@ -41,7 +41,7 @@ import os
 import sys
 
 import random
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 import datetime
 
 from e2spt_hac import textwriter

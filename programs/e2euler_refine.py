@@ -32,7 +32,7 @@
 #
 
 from EMAN2 import *
-from EMAN2db import db_open_dict
+from EMAN2.EMAN2db import db_open_dict
 from copy import deepcopy
 from math import ceil
 import os
@@ -41,7 +41,7 @@ import math
 import random
 import traceback
 import numpy as np
-from Simplex import Simplex
+from EMAN2.Simplex import Simplex
 
 def get_usage():
 	progname = os.path.basename(sys.argv[0])

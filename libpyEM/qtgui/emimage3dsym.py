@@ -37,12 +37,12 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from PyQt4 import QtCore, QtGui, QtOpenGL
 from PyQt4.QtCore import Qt
-from emapplication import EMApp, get_application
-from emglobjects import EM3DModel, EMGLWidget, Camera, Camera2, EMViewportDepthTools2, EMGLProjectionViewMatrices, get_default_gl_colors
-from emimageutil import EMTransformPanel
+from EMAN2.emapplication import EMApp, get_application
+from EMAN2.emglobjects import EM3DModel, EMGLWidget, Camera, Camera2, EMViewportDepthTools2, EMGLProjectionViewMatrices, get_default_gl_colors
+from EMAN2.emimageutil import EMTransformPanel
 from math import *
 from time import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 from weakref import WeakKeyDictionary
 import weakref
 
@@ -409,7 +409,7 @@ class EM3DSymModel(EM3DModel,Orientations,ColumnGraphics):
 	def object_picked(self,object_number):
 		resize_necessary = False
 		if self.image_display_window == None:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 			self.image_display_window = EMImage2DWidget()
 			QtCore.QObject.connect(self.image_display_window,QtCore.SIGNAL("module_closed"),self.on_image_display_window_closed)
 			resize_necessary = True

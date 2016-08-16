@@ -36,16 +36,16 @@ from PyQt4.QtCore import Qt
 from OpenGL import GL,GLU,GLUT
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 from math import *
 from EMAN2 import *
-from emimageutil import EMTransformPanel
+from EMAN2.emimageutil import EMTransformPanel
 import weakref
 from time import *
-from libpyGLUtils2 import *
+from EMAN2.libpyGLUtils2 import *
 
-from emglobjects import EM3DModel, Camera2,EMViewportDepthTools, get_default_gl_colors
-from emlights import *
+from EMAN2.emglobjects import EM3DModel, Camera2,EMViewportDepthTools, get_default_gl_colors
+from EMAN2.emlights import *
 
 MAG_INCREMENT_FACTOR = 101.1
 
@@ -651,8 +651,8 @@ class EMFontInspector(QtGui.QWidget, EMLightsInspectorBase):
 #		
 # This is just for testing, of course
 if __name__ == '__main__':
-	from emapplication import EMApp
-	from emimage3d import EMImage3DWidget
+	from EMAN2.emapplication import EMApp
+	from EMAN2.emimage3d import EMImage3DWidget
 	em_app = EMApp()
 	window = EMImage3DWidget()
 	font_model = EM3DFontModel(window)

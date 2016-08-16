@@ -35,8 +35,8 @@ from PyQt4.QtCore import Qt
 from math import *
 import numpy
 from EMAN2 import *
-from valslider import ValSlider
-from emanimationutil import Animator
+from EMAN2.valslider import ValSlider
+from EMAN2.emanimationutil import Animator
 import weakref
 import copy
 import sys
@@ -589,7 +589,7 @@ class EMMetaDataTable(object):
 		left = [str(k) for k in metadata.keys()]
 		right = [str(v) for v in metadata.values()]
 		
-		from emform import EMParamTable, ParamDef,EMFormWidget
+		from EMAN2.emform import EMParamTable, ParamDef,EMFormWidget
 		
 		params = []
 		a = EMParamTable(name="Metadata",desc_short="",desc_long="Meta data associated with this image")

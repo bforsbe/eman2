@@ -6,7 +6,7 @@ import os
 from os import system
 import sys
 from e2simmx import cmponetomany
-from reconstruction import recons3d_4nn
+from sparx.reconstruction import recons3d_4nn
 import numpy # import numpy namespace
 
 def main():

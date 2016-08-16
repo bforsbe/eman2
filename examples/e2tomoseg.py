@@ -31,13 +31,13 @@
 #
 
 from EMAN2 import *
-from emapplication import EMApp
-from emdataitem3d import EMDataItem3D, EMIsosurface
-from emimage2d import EMImage2DWidget
-from emimagemx import EMImageMXWidget
-from emscene3d import EMScene3D, EMInspector3D, EMQTreeWidget
+from EMAN2.emapplication import EMApp
+from EMAN2.emdataitem3d import EMDataItem3D, EMIsosurface
+from EMAN2.emimage2d import EMImage2DWidget
+from EMAN2.emimagemx import EMImageMXWidget
+from EMAN2.emscene3d import EMScene3D, EMInspector3D, EMQTreeWidget
 import os
-from valslider import ValSlider, EMANToolButton, EMSpinWidget, EMQTColorWidget
+from EMAN2.valslider import ValSlider, EMANToolButton, EMSpinWidget, EMQTColorWidget
 import weakref
 
 from PyQt4 import QtCore

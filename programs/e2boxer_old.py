@@ -32,12 +32,12 @@
 #
 
 from EMAN2 import BoxingTools,gm_time_string,Transform, E2init, E2end, E2progress,db_open_dict,EMArgumentParser
-from EMAN2db import db_check_dict
-from EMAN2jsondb import *
-from pyemtbx.boxertools import CoarsenedFlattenedImageCache,FLCFImageCache
+from EMAN2.EMAN2db import db_check_dict
+from EMAN2.EMAN2jsondb import *
+from EMAN2.pyemtbx.boxertools import CoarsenedFlattenedImageCache,FLCFImageCache
 from copy import deepcopy
 from EMAN2 import *
-from emboxerbase import *
+from EMAN2.emboxerbase import *
 import os
 
 SWARM_TEMPLATE_MIN = TEMPLATE_MIN # this comes from emboxerbase
@@ -115,7 +115,7 @@ e2boxer.py ????.mrc --boxsize=256
 	(options, args) = parser.parse_args()
 
 	if options.cter:
-		from global_def import SPARXVERSION
+		from sparx.global_def import SPARXVERSION
 		import global_def
 		if len(args) <2 or len(args) > 3:
 			print "see usage"
@@ -144,10 +144,10 @@ e2boxer.py ????.mrc --boxsize=256
 			sys.argv = mpi_init(len(sys.argv), sys.argv)
 
 		if global_def.CACHE_DISABLE:
-			from utilities import disable_bdb_cache
+			from sparx.utilities import disable_bdb_cache
 			disable_bdb_cache()
 
-		from morphology import cter
+		from sparx.morphology import cter
 		global_def.BATCH = True
 		cter(stack, out1, out2, options.indir, options.nameroot, options.micsuffix, options.wn, \
 			voltage=300.0, Pixel_size=options.apix, Cs = options.Cs, wgh=options.ac, kboot=options.kboot, MPI=options.MPI, DEBug = options.debug)
@@ -589,7 +589,7 @@ class SwarmPanel:
 			self.enable_interactive_threshold  = QtGui.QCheckBox("Interactive Threshold")
 			self.enable_interactive_threshold.setToolTip("Tweak the correlation threshold that is used to select particles.")
 			self.enable_interactive_threshold.setChecked(False)
-			from valslider import ValSlider
+			from EMAN2.valslider import ValSlider
 			self.thr = ValSlider(None,(0.0,3.0),"")
 			self.thr.setValue(1.0)
 			self.thr.setEnabled(False)
@@ -1257,7 +1257,7 @@ class SwarmBoxer:
 		Brings the template viewer to the foreground
 		'''
 		if self.template_viewer == None:
-			from emimagemx import EMImageMXWidget
+			from EMAN2.emimagemx import EMImageMXWidget
 			self.template_viewer = EMImageMXWidget()
 
 			self.template_viewer.set_data(self.templates,soft_delete=True) # should work if self.templates is None
@@ -2399,7 +2399,7 @@ class GaussPanel:
 		# calculate ctf values with ctf_get
 		#print "starting CTF estimation"
 		# get the current image
-		from utilities import get_im
+		from sparx.utilities import get_im
 		#image_name = self.target().boxable.get_image_name()
 		#img = BigImageCache.get_image_directly( image_name )
 		image_name = self.target().target().file_names[0]
@@ -2430,16 +2430,16 @@ class GaussPanel:
 			return
 
 		# print "determine power spectrum"
-		from fundamentals import welch_pw2
+		from sparx.fundamentals import welch_pw2
 		# XXX: check image dimensions, especially box size for welch_pw2!
 		power_sp = welch_pw2(img, win_size=ctf_window_size, overlp_x=ctf_overlap_size, overlp_y=ctf_overlap_size,
 				     edge_x=ctf_edge_size, edge_y=ctf_edge_size)
-		from fundamentals import rot_avg_table
+		from sparx.fundamentals import rot_avg_table
 		avg_sp = rot_avg_table(power_sp)
 		del power_sp
 
 		# print "determine ctf"
-		from morphology import defocus_gett
+		from sparx.morphology import defocus_gett
 
 
 		input_pixel_size = float(self.pixel_input_edit.text())
@@ -2470,7 +2470,7 @@ class GaussPanel:
 
 		# XXX: wgh?? amp_cont static to 0?
 		# set image properties, in order to save ctf values
-		from utilities import set_ctf
+		from sparx.utilities import set_ctf
 		set_ctf(img, [defocus, ctf_cs, ctf_volt, input_pixel_size, 0, ctf_ampcont])
 		# and rewrite image
 		img.write_image(image_name)
@@ -2517,7 +2517,7 @@ class GaussPanel:
 
 		print "Starting CTER"
 		# get the current image
-		from utilities import get_im
+		from sparx.utilities import get_im
 		#image_name = self.target().boxable.get_image_name()
 		#img = BigImageCache.get_image_directly( image_name )
 		image_name = self.target().target().file_names[0]
@@ -2553,7 +2553,7 @@ class GaussPanel:
 			print "Please remove or rename %s and or %s"%(outpwrot,outpartres)
 			return
 
-		from morphology import cter
+		from sparx.morphology import cter
 		defocus, ast_amp, ast_agl, error_defocus, error_astamp, error_astagl = cter(None, outpwrot, outpartres, None, None, ctf_window_size, voltage=ctf_volt, Pixel_size=input_pixel_size, Cs = ctf_cs, wgh=ctf_ampcont, kboot=ctf_kboot, MPI=False, DEBug= False, overlap_x = ctf_overlap_size, overlap_y = ctf_overlap_size, edge_x = ctf_edge_size, edge_y = ctf_edge_size, guimic=image_name)
 
 		self.estdef.setText(str(defocus))
@@ -2576,7 +2576,7 @@ class GaussPanel:
 
 		# XXX: wgh?? amp_cont static to 0?
 		# set image properties, in order to save ctf values
-		from utilities import set_ctf
+		from sparx.utilities import set_ctf
 		set_ctf(img, [defocus, ctf_cs, ctf_volt, input_pixel_size, 0, ctf_ampcont, ast_amp, ast_agl])
 		# and rewrite image
 		img.write_image(image_name)
@@ -2736,7 +2736,7 @@ class GaussBoxer:
 		small_img /= sigma
 
 		if(self.use_variance):
-			from morphology import power
+			from sparx.morphology import power
 			small_img = power(small_img, 2.0)
 			print "using variance"
 
@@ -2893,7 +2893,7 @@ class GaussBoxer:
 		small_img.set_attr("subsample_rate",subsample_rate)
 		small_img.set_attr("frequency_cutoff",frequency_cutoff)
 		small_img.set_attr("template_min",template_min)
-		from utilities import generate_ctf
+		from sparx.utilities import generate_ctf
 		try:
 			ctf_dict = img.get_attr("ctf")
 			ctf_dict.apix = self.pixel_output
@@ -2996,7 +2996,7 @@ class GaussBoxer:
 		small_img /= sigma
 
 		if(self.use_variance):
-			from morphology import power
+			from sparx.morphology import power
 			small_img = power(small_img, 2.0)
 			print "using variance"
 
@@ -3032,7 +3032,7 @@ class GaussBoxer:
 	# take care of case where estimated ctf is saved into downsampled micrograph from which particles are picked.
 	def auto_ctf(self,image_name,ctf_params):
 
-		from utilities import get_im
+		from sparx.utilities import get_im
 		img = get_im(image_name)
 		ctf_volt = ctf_params['ctf_volt']
 		ctf_window = ctf_params['ctf_window']
@@ -3045,19 +3045,19 @@ class GaussBoxer:
 		self.pixel_input = ctf_params['pixel_input']
 		self.pixel_output = ctf_params['pixel_output']
 
-		from fundamentals import welch_pw2
+		from sparx.fundamentals import welch_pw2
 		# XXX: check image dimensions, especially box size for welch_pw2!
 		power_sp = welch_pw2(img,win_size=ctf_window,overlp_x=ctf_overlap,overlp_y=ctf_overlap,edge_x=ctf_edge,edge_y=ctf_edge)
 
-		from fundamentals import rot_avg_table
+		from sparx.fundamentals import rot_avg_table
 		avg_sp = rot_avg_table(power_sp)
 		del power_sp
 
-		from morphology import defocus_gett
+		from sparx.morphology import defocus_gett
 		defocus = defocus_gett(avg_sp,voltage=ctf_volt,Pixel_size=self.pixel_input,Cs=ctf_Cs,wgh=ctf_ampcont, f_start=ctf_fstart,f_stop=ctf_fstop)
 
 		# set image properties, in order to save ctf values
-		from utilities import set_ctf, generate_ctf
+		from sparx.utilities import set_ctf, generate_ctf
 		ctf_tuple = [defocus,ctf_Cs,ctf_volt,self.pixel_output,0,ctf_ampcont]
 		set_ctf(img, ctf_tuple)
 		img.write_image(image_name, 0)
@@ -3285,7 +3285,7 @@ class CTFInspectorWidget(QtGui.QWidget):
 			steph = float(h-2*hborder) / float(sizeh)
 
 			import math
-			from utilities import read_text_file
+			from sparx.utilities import read_text_file
 			ctfdata2 = read_text_file("procpw.txt",3)
 
 			if ((self.i_start is not None) and (self.i_stop is not None)):

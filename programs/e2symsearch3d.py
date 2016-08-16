@@ -35,7 +35,7 @@
 from EMAN2 import *
 import math
 import os
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 import sys
 
 
@@ -169,7 +169,7 @@ def main():
 		options.path = rootpath + '/' + options.path
 		
 	if options.parallel:
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 
 	options = sptOptionsParser( options )
 	

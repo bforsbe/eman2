@@ -33,7 +33,7 @@
 
 
 from EMAN2 import *
-from EMAN2jsondb import *
+from EMAN2.EMAN2jsondb import *
 from os import system
 import sys
 

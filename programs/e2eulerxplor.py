@@ -32,18 +32,18 @@
 #
 
 from EMAN2 import *
-from EMAN2db import db_open_dict, db_check_dict
+from EMAN2.EMAN2db import db_open_dict, db_check_dict
 from OpenGL import GL,GLU,GLUT
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import Qt
-from emanimationutil import OrientationListAnimation,Animator
-from emapplication import EMApp, get_application, error
-from emglobjects import EM3DModel
-from emimage2d import EMImage2DWidget
-from emimage3dsym import EM3DSymModel, EMSymInspector, EMSymViewerWidget
-from emimagemx import EMImageMXWidget, EMLightWeightParticleCache
+from EMAN2.emanimationutil import OrientationListAnimation,Animator
+from EMAN2.emapplication import EMApp, get_application, error
+from EMAN2.emglobjects import EM3DModel
+from EMAN2.emimage2d import EMImage2DWidget
+from EMAN2.emimage3dsym import EM3DSymModel, EMSymInspector, EMSymViewerWidget
+from EMAN2.emimagemx import EMImageMXWidget, EMLightWeightParticleCache
 import os
 import sys
 import weakref
@@ -590,7 +590,7 @@ class EMEulerExplorer(EM3DSymModel,Animator):
 			data = []
 			idx_included = []
 			running_idx = 0
-			from emimagemx import ApplyAttribute
+			from EMAN2.emimagemx import ApplyAttribute
 			for val in included:
 				bdata.append([self.particle_file,val,[ApplyAttribute("Img #",val)]])
 				idx_included.append(running_idx)
@@ -641,7 +641,7 @@ class EMEulerExplorer(EM3DSymModel,Animator):
 
 					t = Transform({"type":"2d","alpha":a,"mirror":int(m)})
 					t.set_trans(x,y)
-					from emimagemx import ApplyTransform
+					from EMAN2.emimagemx import ApplyTransform
 					f.append(ApplyTransform(t))
 					#data[i].transform(t)
 				self.particle_viewer.set_data(data)

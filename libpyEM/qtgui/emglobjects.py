@@ -36,10 +36,10 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from PyQt4 import QtCore, QtGui, QtOpenGL
 from PyQt4.QtCore import Qt
-from emapplication import EMGLWidget, get_application
-from libpyGLUtils2 import GLUtil
+from EMAN2.emapplication import EMGLWidget, get_application
+from EMAN2.libpyGLUtils2 import GLUtil
 from math import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 import numpy
 import weakref
 

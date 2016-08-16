@@ -845,7 +845,7 @@ class GUIctf(QtGui.QWidget):
 		'data' is a list of (filename,ctf,im_1d,bg_1d,im_2d,bg_2d)
 		"""
 		try:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 		except:
 			print "Cannot import EMAN image GUI objects (EMImage2DWidget)"
 			sys.exit(1)

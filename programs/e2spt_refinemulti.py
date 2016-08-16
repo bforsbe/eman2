@@ -34,7 +34,7 @@
 from sys import argv
 import os
 from EMAN2 import *
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 
 from e2spt_classaverage import Align3DTask, align3Dfunc, get_results
 
@@ -856,7 +856,7 @@ def main():
 				print "\n\n(e2spt_classaverage.py) INITIALIZING PARALLELISM!"
 				print "\n\n"
 
-				from EMAN2PAR import EMTaskCustomer
+				from EMAN2.EMAN2PAR import EMTaskCustomer
 				etc=EMTaskCustomer(options.parallel)
 
 				pclist=[options.input]

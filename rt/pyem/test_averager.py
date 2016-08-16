@@ -34,7 +34,7 @@
 from EMAN2 import *
 import unittest,os,sys
 import testlib
-from pyemtbx.exceptions import *
+from EMAN2.pyemtbx.exceptions import *
 from math import pi
 from optparse import OptionParser
 

@@ -31,21 +31,21 @@
 #
 
 from EMAN2 import *
-from EMAN2jsondb import js_open_dict
+from EMAN2.EMAN2jsondb import js_open_dict
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QChar, QString, Qt
-from emapplication import EMApp
-from emimage2d import *
-from emimagemx import *
-from empdbitem3d import *
-from emplot2d import *
-from emhist import *
-from emplot3d import *
-from expand_string import expand_string
-from libpyUtils2 import EMUtil
-from matching import matches_pats
+from EMAN2.emapplication import EMApp
+from EMAN2.emimage2d import *
+from EMAN2.emimagemx import *
+from EMAN2.empdbitem3d import *
+from EMAN2.emplot2d import *
+from EMAN2.emhist import *
+from EMAN2.emplot3d import *
+from EMAN2.expand_string import expand_string
+from EMAN2.libpyUtils2 import EMUtil
+from EMAN2.matching import matches_pats
 from string import lower
-from valslider import StringBox
+from EMAN2.valslider import StringBox
 import os
 import re
 import threading
@@ -3048,8 +3048,8 @@ class EMBrowserWidget(QtGui.QWidget) :
 		# although this looks dumb it is necessary to break Python's issue with circular imports(a major weakness of Python IMO)
 
 		global emscene3d, emdataitem3d
-		import emscene3d
-		import emdataitem3d
+		import EMAN2.emscene3d as emscene3d
+		import EMAN2.emdataitem3d as emdataitem3d
 
 		QtGui.QWidget.__init__(self, parent)
 

@@ -33,7 +33,7 @@
 
 import EMAN2
 from EMAN2 import *
-from pyemtbx.exceptions import *
+from EMAN2.pyemtbx.exceptions import *
 import unittest
 import testlib
 import sys
@@ -1232,7 +1232,7 @@ class TestEMData(unittest.TestCase):
     
     def test_render_amp8(self):
         """test render_amp8() function ......................"""
-        from libpyGLUtils2 import GLUtil
+        from EMAN2.libpyGLUtils2 import GLUtil
         e = EMData()
         e.set_size(32,32,1)
         e.process_inplace("testimage.noise.uniform.rand")

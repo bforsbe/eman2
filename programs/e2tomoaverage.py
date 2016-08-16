@@ -32,7 +32,7 @@
 
 from EMAN2 import file_exists,EMData,E2init,E2progress,E2end,EMANVERSION,check_eman2_type_string,numbered_bdb,Transform,EMUtil,launch_childprocess,EMArgumentParser
 import EMAN2
-from EMAN2db import EMTask,db_open_dict
+from EMAN2.EMAN2db import EMTask,db_open_dict
 
 
 tomo_ave_path_root = "tomo_ave" # this  string is used for making output directories automatically
@@ -568,7 +568,7 @@ class EMTomoAlignments:
 
 				task = EMTomoAlignTaskDC(data=data)
 				
-				from EMAN2PAR import EMTaskCustomer
+				from EMAN2.EMAN2PAR import EMTaskCustomer
 				etc=EMTaskCustomer(self.options.parallel)
 				#print "Est %d CPUs"%etc.cpu_est()
 				tid=etc.send_task(task)
@@ -689,7 +689,7 @@ class EMTomoAlignTask:
 		Called to perform class averaging 
 		May boot strap the original average, iteratively refines averages, aligns final average to ref 
 		'''
-		from EMAN2db import db_open_dict
+		from EMAN2.EMAN2db import db_open_dict
 		progress_callback(0)
 		
 		probe = self.data["probe"]
@@ -776,7 +776,7 @@ class EMTomoAlignTaskDC(EMTask):
 		Called to perform class averaging 
 		May boot strap the original average, iteratively refines averages, aligns final average to ref 
 		'''
-		from EMAN2db import db_open_dict
+		from EMAN2.EMAN2db import db_open_dict
 		progress_callback(0)
 		
 		cache_name=self.data["probe"][1]

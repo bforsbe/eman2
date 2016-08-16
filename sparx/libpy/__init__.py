@@ -27,21 +27,25 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 #
+#
 
-from utilities       import *
-from filter          import *
-from projection      import *
-from fundamentals    import *
-from statistics      import *
+
+# $ Header: $
+"""
+Python layer for scripting and interactive use.
+"""
+
 import os
-os.environ["SPARXDIR"] = os.path.dirname(os.path.abspath(__file__))
+SPARXDIR = os.path.dirname(os.path.realpath(__file__))
+EMAN2DIR = SPARXDIR.replace("sparx","EMAN2")
 
-from alignment       import *
-from morphology      import *
-from reconstruction  import *
-from applications    import *
-from user_functions  import *
+from sparx.utilities import *
+from sparx.filter import *
+from sparx.projection import *
+from sparx.fundamentals import *
+from sparx.statistics import *
 from global_def      import *
 from pixel_error     import *
 from development     import *
 from multi_shc       import *
+

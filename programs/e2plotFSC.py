@@ -31,10 +31,10 @@
 #
 
 from EMAN2 import *
-from EMAN2fsc import *
-from emplot2d import EMPlot2DWidget,colortypes
-from empmwidgets import PMFSCTableWidget
-from emapplication import EMApp
+from EMAN2.EMAN2fsc import *
+from EMAN2.emplot2d import EMPlot2DWidget,colortypes
+from EMAN2.empmwidgets import PMFSCTableWidget
+from EMAN2.emapplication import EMApp
 
 def main():
 	progname = os.path.basename(sys.argv[0])

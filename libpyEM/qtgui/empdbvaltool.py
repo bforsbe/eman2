@@ -31,12 +31,12 @@
 #
 
 from EMAN2 import PDBReader, EMData
-from emapplication import EMApp, get_application
+from EMAN2.emapplication import EMApp, get_application
 from PyQt4 import QtCore, QtGui
-from emimage3d import EMImage3DWidget
-from emimage3diso import EMIsosurfaceModel
-from empdbviewer import *
-from emselector import EMSelectorDialog
+from EMAN2.emimage3d import EMImage3DWidget
+from EMAN2.emimage3diso import EMIsosurfaceModel
+from EMAN2.empdbviewer import *
+from EMAN2.emselector import EMSelectorDialog
 
 
 class EMPDBValWidget(QtGui.QWidget):
