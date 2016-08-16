@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 #
 # Author: Steven Ludtke, 04/10/2003 (sludtke@bcm.edu)
 # Copyright (c) 2000-2006 Baylor College of Medicine
@@ -31,55 +30,20 @@
 #
 #
 
-# displaydemo.py  09/18/2009  Steven Ludtke
+import EMAN2.libpyAligner2 as libpyAligner2
+import EMAN2.libpyAverager2 as libpyAverager2
+import EMAN2.libpyCmp2 as libpyCmp2
+import EMAN2.libpyEMObject2 as libpyEMObject2
+import EMAN2.libpyFundamentals2 as libpyFundamentals2
+import EMAN2.libpyGeometry2 as libpyGeometry2
+import EMAN2.libpyPointArray2 as libpyPointArray2
+import EMAN2.libpyPolarData2 as libpyPolarData2
+import EMAN2.libpyProcessor2 as libpyProcessor2
+import EMAN2.libpyProjector2 as libpyProjector2
+import EMAN2.libpyReconstructor2 as libpyReconstructor2
+import EMAN2.libpyTransform2 as libpyTransform2
+import EMAN2.libpyUtils2 as libpyUtils2
 
-
-from EMAN2 import *
-from math import *
-from PyQt4 import QtCore
-from EMAN2.emapplication import EMApp
-from EMAN2.emimage2d import EMImage2DWidget
-from EMAN2.emshape import EMShape
-
-
-def main():
-	# an application
-	em_app = EMApp()
-	control1=TestControl(em_app)
-	control2=TestControl(em_app)
-
-	em_app.execute()
-
-class TestControl():
-	def __init__(self,app):
-		# the single image display widget
-		self.im2d = EMImage2DWidget(application=app)
-	
-		# get some signals from the window.
-		QtCore.QObject.connect(self.im2d,QtCore.SIGNAL("mousedown"),self.down)
-		QtCore.QObject.connedisplaydemo.pyct(self.im2d,QtCore.SIGNAL("mousedrag"),self.drag)
-		QtCore.QObject.connect(self.im2d,QtCore.SIGNAL("mouseup"),self.up)
-	
-		#self explanatory
-		a=test_image(size=(512,512))
-		self.im2d.set_data(a)
-		self.im2d.show()
-
-
-	def down(self,event,lc):
-		"""The event contains the x,y coordinates in window space, lc are the coordinates in image space"""
-
-		self.downloc=lc	
-
-	def drag(self,event,lc):
-		s=EMShape(["line",0,.7,0,self.downloc[0],self.downloc[1],lc[0],lc[1],1])
-		self.im2d.add_shape("mine",s)
-		self.im2d.updateGL()
-	
-	def up(self,event,lc):
-		s=EMShape(["line",.7,.2,0,self.downloc[0],self.downloc[1],lc[0],lc[1],1])
-		self.im2d.del_shape("mine")
-		self.im2d.add_shape("done",s)
-		self.im2d.updateGL()
-	
-if __name__ == "__main__":  main()
+import EMAN2.libpyTypeConverter2 as libpyTypeConverter2
+import EMAN2.libpyEMData2 as libpyEMData2
+import EMAN2.libpyAnalizer2 as libpyAnalizer2

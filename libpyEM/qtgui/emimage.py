@@ -41,7 +41,7 @@ from EMAN2.emscene3d import EMScene3D
 from EMAN2.emdataitem3d import EMDataItem3D, EMIsosurface
 
 def image_update():
-	from emimage2d import EMImage2DWidget
+	from EMAN2.emimage2d import EMImage2DWidget
 	from EMAN2.emimagemx import EMImageMXWidget
 	from EMAN2.emimage3d import EMImage3DWidget
 	for i in EMImage2DWidget.allim.keys():
@@ -113,7 +113,7 @@ class EMImageWidget(object):
 			widget.set_data(data,remove_directories_from_name(filename),replace)
 			return widget	
 		elif force_2d or (isinstance(data,EMData) and data.get_zsize()==1):
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 			if old:
 				if isinstance(old,EMImage2DWidget) :
 					old.set_data(data,filename)
@@ -213,7 +213,7 @@ class EMWidgetFromFile(object):
 			
 			if force_2d or isinstance(data,EMData) and data.get_zsize()==1:
 				if isinstance(data,list) or data.get_ysize() != 1:
-					from emimage2d import EMImage2DWidget
+					from EMAN2.emimage2d import EMImage2DWidget
 					if isinstance(old,EMImage2DWidget): widget = old
 					else: widget= EMImage2DWidget(application=application)
 				else:

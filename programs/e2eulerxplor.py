@@ -41,7 +41,7 @@ from PyQt4.QtCore import Qt
 from EMAN2.emanimationutil import OrientationListAnimation,Animator
 from EMAN2.emapplication import EMApp, get_application, error
 from EMAN2.emglobjects import EM3DModel
-from emimage2d import EMImage2DWidget
+from EMAN2.emimage2d import EMImage2DWidget
 from EMAN2.emimage3dsym import EM3DSymModel, EMSymInspector, EMSymViewerWidget
 from EMAN2.emimagemx import EMImageMXWidget, EMLightWeightParticleCache
 import os

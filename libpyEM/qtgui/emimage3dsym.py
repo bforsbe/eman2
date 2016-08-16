@@ -409,7 +409,7 @@ class EM3DSymModel(EM3DModel,Orientations,ColumnGraphics):
 	def object_picked(self,object_number):
 		resize_necessary = False
 		if self.image_display_window == None:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 			self.image_display_window = EMImage2DWidget()
 			QtCore.QObject.connect(self.image_display_window,QtCore.SIGNAL("module_closed"),self.on_image_display_window_closed)
 			resize_necessary = True

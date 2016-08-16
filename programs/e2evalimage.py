@@ -120,7 +120,7 @@ class GUIEvalImage(QtGui.QWidget):
 		'parms' is [box size,ctf,box coord,set of excluded boxnums,quality,oversampling]
 		"""
 		try:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 		except:
 			print "Cannot import EMAN image GUI objects (EMImage2DWidget)"
 			sys.exit(1)
