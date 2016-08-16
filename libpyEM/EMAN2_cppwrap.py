@@ -52,3 +52,4 @@ try: from EMAN2.libpyTomoSeg2 import * # this module may not exist on Windows, w
 except: pass
 try: from EMAN2.libpyMarchingCubes2 import * # this module won't always exist. Somethings may fail without it, but that's inevitable
 except: pass
+#from EMAN2.libpyGLUtils2 import *

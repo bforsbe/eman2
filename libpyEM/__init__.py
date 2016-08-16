@@ -47,7 +47,7 @@ from EMAN2.EMAN2_cppwrap import *
 from EMAN2.pyemtbx.imagetypes import *
 from EMAN2.pyemtbx.box import *
 from e2version import *
-from EMAN2 import EMAN2db, EMAN2jsondb
+from EMAN2 import EMAN2db
 from EMAN2 import EMAN2jsondb
 import argparse, copy
 import glob
