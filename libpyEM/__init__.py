@@ -32,6 +32,7 @@
 
 import os
 EMAN2DIR = os.path.dirname(os.path.abspath(__file__))
+EMANVERSION="EMAN 2.12"
 
 import sys
 from math import *

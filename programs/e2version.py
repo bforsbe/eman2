@@ -35,9 +35,9 @@ import os
 import sys
 import platform
 from subprocess import *
+from EMAN2 import EMANVERSION
 
 
-EMANVERSION="EMAN 2.12"
 DATESTAMP="BUILD_DATE"
 
 def main():
