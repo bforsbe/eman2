@@ -77,7 +77,7 @@ class HistoryForm:
 		self.form.setWindowTitle("EMAN2 history")
 		
 		from PyQt4 import QtGui,QtCore
-		self.form.setWindowIcon(QtGui.QIcon(os.getenv("EMAN2DIR")+"/images/feather.png"))
+		self.form.setWindowIcon(QtGui.QIcon("{}/images/feather.png".format(EMAN2DIR)))
 		self.form.resize(640,480)
 		QtCore.QObject.connect(self.form,QtCore.SIGNAL("emform_ok"),self.on_ok)
 		QtCore.QObject.connect(self.form,QtCore.SIGNAL("emform_cancel"),self.on_cancel)

@@ -31,7 +31,7 @@
 #
 
 import os
-os.environ["EMAN2DIR"] = os.path.dirname(os.path.abspath(__file__))
+EMAN2DIR = os.path.dirname(os.path.abspath(__file__))
 
 import sys
 from math import *
@@ -314,12 +314,7 @@ This function will get an application default by first checking the local direct
 
 def e2getinstalldir() :
 	"""platform independent path with '/'"""
-	if(sys.platform != 'win32'):
-		url=os.getenv("EMAN2DIR")
-	else:
-		url=os.getenv("EMAN2DIR")
-		url=url.replace("\\","/")
-	return url
+	return EMAN2DIR #url
 
 
 def numbered_path(prefix,makenew):
@@ -366,12 +361,7 @@ def get_prefixed_directories(prefix,wd=e2getcwd()):
 	return dirs
 
 def get_image_directory():
-	pf = get_platform()
-	dtag = get_dtag()
-	if pf != "Windows":
-		return os.getenv("EMAN2DIR")+ dtag + "images" + dtag + "macimages" + dtag
-	else:
-		return os.getenv("EMAN2DIR")+ dtag + "images" + dtag
+        return "{}/images/".format(EMAN2DIR)
 
 def get_dtag():
 #	pfrm = get_platform()
