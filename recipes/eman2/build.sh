@@ -8,7 +8,7 @@ cd $build_dir
 
 cmake $SRC_DIR
 
-make -j2
+make -j pyAligner2
 make install
 
 cp "${RECIPE_DIR}/setup.py" .
