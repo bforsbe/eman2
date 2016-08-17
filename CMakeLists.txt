@@ -212,6 +212,8 @@ if("$ENV{CONDA_BUILD_STATE}" STREQUAL "BUILD")
 		set(GSL_INCLUDE_DIRS $ENV{LIBRARY_PREFIX}/include)
 	endif()
 		
+	set(Boost_USE_MULTITHREADED ON)
+	set(Boost_NO_BOOST_CMAKE ON)
 	find_package(Boost COMPONENTS python REQUIRED)
 	find_package(OpenGL REQUIRED)
 	find_package(HDF5 REQUIRED)
