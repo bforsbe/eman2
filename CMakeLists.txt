@@ -216,6 +216,7 @@ if("$ENV{CONDA_BUILD_STATE}" STREQUAL "BUILD")
 	set(Boost_NO_BOOST_CMAKE ON)
 	find_package(Boost COMPONENTS python REQUIRED)
 	find_package(OpenGL REQUIRED)
+	find_package(GLUT REQUIRED)
 	find_package(HDF5 REQUIRED)
 	find_package(PNG REQUIRED)
 	find_package(JPEG REQUIRED)
@@ -229,6 +230,7 @@ if("$ENV{CONDA_BUILD_STATE}" STREQUAL "BUILD")
 	set(OPENGL_LIBRARY ${OPENGL_gl_LIBRARY} CACHE PATH "")
 	set(GL_LIBRARY ${OPENGL_gl_LIBRARY}     CACHE PATH "")
 	set(GLU_LIBRARY ${OPENGL_LIBRARIES} CACHE PATH "")
+	set(GLUT_LIBRARY ${GLUT_glut_LIBRARY} CACHE PATH "")
 	set(GL_INCLUDE_PATH ${OPENGL_INCLUDE_DIR})
 	set(GLU_INCLUDE_PATH ${OPENGL_INCLUDE_DIR})
 
@@ -300,6 +302,7 @@ SET(INCLUDE_DIRS
 	/usr/local/cuda/include
 	$ENV{PREFIX}/include/freetype2
 	${Boost_INCLUDE_PATH}
+	${GLUT_INCLUDE_DIR}
 	${OPENGL_INCLUDE_DIR}
 	/usr/include
 	/sw/include
