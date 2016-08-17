@@ -296,6 +296,9 @@ SET(INCLUDE_DIRS
 	$ENV{GSLDIR}/include
 	/usr/local/include
 	/usr/local/cuda/include
+	$ENV{PREFIX}/include/freetype2
+	${Boost_INCLUDE_PATH}
+	${OPENGL_INCLUDE_DIR}
 	/usr/include
 	/sw/include
 	/usr/include/freetype2
