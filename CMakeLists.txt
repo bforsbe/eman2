@@ -200,6 +200,15 @@ ENDIF(ENABLE_IOCACHE)
 #     ADD_DEFINITIONS(-DHDFIO_CACHE)
 # ENDIF(ENABLE_HDFIOCACHE)
 
+set(CMAKE_PREFIX_PATH $ENV{PREFIX})
+find_package(Boost COMPONENTS python)
+find_package(OpenGL)
+find_package(GLUT)
+find_package(HDF5)
+find_package(PNG)
+find_package(JPEG)
+find_package(ZLIB)
+
 SET(INCLUDE_DIRS
 	${CMAKE_SOURCE_DIR}/libEM
 	${CMAKE_SOURCE_DIR}/libpyEM
