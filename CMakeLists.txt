@@ -258,40 +258,10 @@ MACRO(CHECK_LIB_ONLY upper lower)
 ENDMACRO(CHECK_LIB_ONLY)
 
 MACRO(CHECK_PYTHON)
-	SET(PYTHON_FOUND FALSE)
+	find_package(PythonInterp)
+	find_package(PythonLibs)
 
-	FOREACH(PYVER ${ARGV})
-		IF(NOT PYTHON_FOUND)
-			IF (WIN32)
-				FIND_PATH(PYTHON_INCLUDE_PATH Python.h
-					$ENV{PYTHON_ROOT}/include C:/Python${PYVER}/include)
-
-				FIND_LIBRARY(PYTHON_LIBRARY NAMES python${PYVER} PATHS
-					$ENV{PYTHON_ROOT}/libs C:/Python${PYVER}/libs)
-
-			ELSE (WIN32)
-				FIND_PATH(PYTHON_INCLUDE_PATH Python.h
-					$ENV{PYTHON_ROOT}/include/python${PYVER}
-					/usr/local/include/python${PYVER}
-					/usr/include/python${PYVER})
-
-				FIND_LIBRARY(PYTHON_LIBRARY NAMES python${PYVER} PATHS
-					$ENV{PYTHON_ROOT}/lib/python${PYVER}/config
-					/usr/local/lib/python${PYVER}/config
-					/usr/lib/python${PYVER}/config
-					/usr/lib64/python${PYVER}/config
-					$ENV{PYTHON_ROOT}/lib /usr/local/lib /usr/lib)
-
-			ENDIF (WIN32)
-
-			IF(PYTHON_INCLUDE_PATH)
-				IF(PYTHON_LIBRARY)
-					SET(PYTHON_FOUND TRUE)
-				ENDIF(PYTHON_LIBRARY)
-			ENDIF(PYTHON_INCLUDE_PATH)
-
-		ENDIF(NOT PYTHON_FOUND)
-    ENDFOREACH(PYVER)
+	set(PYTHON_INCLUDE_PATH ${PYTHON_INCLUDE_DIR})
 ENDMACRO(CHECK_PYTHON)
 
 IF(ENABLE_FFTW2)
