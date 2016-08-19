@@ -118,7 +118,7 @@ ELSE(WIN32)
             SUFFIX ${suffix}
             )
     
-    set (CMAKE_MODULE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-as-needed")
+    set (CMAKE_MODULE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-as-needed,--no-undefined")
 
     IF(ENABLE_FFTW2 OR ENABLE_FFTW3)
     	TARGET_LINK_LIBRARIES(EM2 ${FFTW_LIBRARIES} ${GSL_LIBRARY} ${GSL_CBLAS_LIBRARY} m)
