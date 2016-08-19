@@ -201,6 +201,8 @@ ENDIF(ENABLE_IOCACHE)
 # ENDIF(ENABLE_HDFIOCACHE)
 
 set(CMAKE_PREFIX_PATH $ENV{PREFIX})
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_NO_BOOST_CMAKE ON)
 find_package(Boost COMPONENTS python)
 find_package(OpenGL)
 find_package(GLUT)
