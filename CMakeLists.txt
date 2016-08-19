@@ -233,11 +233,8 @@ SET(LIB_DIRS
 
 MACRO(CHECK_REQUIRED_LIB2 upper lower header lower2 header2)
     FIND_PATH(${upper}_INCLUDE_PATH ${header} ${INCLUDE_DIRS})
-    IF(NOT ${upper}_INCLUDE_PATH)
-		    FIND_PATH(${upper}_INCLUDE_PATH ${header2} ${INCLUDE_DIRS})
-    ELSE()
-		    FIND_LIBRARY(${upper}_LIBRARY NAMES ${lower} ${lower2})
-    ENDIF()
+	FIND_PATH(${upper}_INCLUDE_PATH ${header2} ${INCLUDE_DIRS})
+	FIND_LIBRARY(${upper}_LIBRARY NAMES ${lower} ${lower2})
 ENDMACRO(CHECK_REQUIRED_LIB2)
 
 MACRO(CHECK_REQUIRED_LIB upper lower header)
