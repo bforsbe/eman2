@@ -32,12 +32,18 @@
 
 import pprint
 from EMAN2 import *
+from EMAN2.Simplex import Simplex
 import sys
+from sys import argv
 from numpy import *
 import numpy.linalg as LA
+from time import sleep,time
+import threading
+import Queue
+
 
 def main():
-	print """NOTICE - we have a newer algorithm which performs much more reliably (and with better results) than this program currently provides, but it has not yet been integrated with this program. Please see examples/movieccf.py."""
+	print """Will align a movie stack using all-vs-all CCFs with a global optimization strategy. Several outputs including different frame subsets are produced, as well as a text file with the translation vector map."""
 
 
 	progname = os.path.basename(sys.argv[0])
@@ -52,7 +58,7 @@ def main():
 	
 	parser = EMArgumentParser(usage=usage,version=EMANVERSION)
 	
-	parser.add_argument("--align_frames", action="store_true",help="Perform whole-frame alignment of the stack",default=False)
+	parser.add_argument("--align_frames", action="store_true",help="Perform whole-frame alignment of the input stacks",default=False)
 #	parser.add_argument("--align_frames_tree", action="store_true",help="Perform whole-frame alignment of the stack hierarchically",default=False)
 #	parser.add_argument("--align_frames_countmode", action="store_true",help="Perform whole-frame alignment of frames collected in counting mode",default=False)
 	parser.add_argument("--save_aligned", action="store_true",help="Save dark/gain corrected and optionally aligned stack",default=False)
@@ -64,6 +70,9 @@ def main():
 	parser.add_argument("--frames",action="store_true",default=False,help="Save the dark/gain corrected frames")
 	parser.add_argument("--normalize",action="store_true",default=False,help="Apply edgenormalization to input images after dark/gain")
 	parser.add_argument("--movie", type=int,help="Display an n-frame averaged 'movie' of the stack, specify number of frames to average",default=0)
+	parser.add_argument("--optbox", type=int,help="Box size to use during alignment optimization. Default is 256.",default=256)
+	parser.add_argument("--optstep", type=int,help="Step size to use during alignment optimization. Default is 256.",default=256)
+	parser.add_argument("--optfsc", default=False, help="Specify whether to compute FSC during alignment optimization. Default is False.",action="store_true")
 	parser.add_argument("--simpleavg", action="store_true",help="Will save a simple average of the dark/gain corrected frames (no alignment or weighting)",default=False)
 	parser.add_argument("--avgs", action="store_true",help="Testing",default=False)
 	parser.add_argument("--parallel", default=None, help="parallelism argument. This program supports only thread:<n>")
@@ -360,90 +369,92 @@ def process_movie(fsp,dark,gain,first,flast,step,options):
 
 		# we iterate the alignment process several times
 
-		if options.align_frames :
-			outim2 = []
+# 		if options.align_frames :
+
+# 			outim2 = []
 			
-			print len(outim)
+# 			print len(outim)
 			
-			aliavg = sum(outim)				# we start with a simple average of all frames
+# 			aliavg = sum(outim)				# we start with a simple average of all frames
 			
-			for it in xrange(3) :
-				step = len(outim)		# coarsest search aligns the first 1/2 of the images against the second, step=step/2 each cycle
-				xali = XYData()		# this will contain the alignments which are hierarchically estimated and improved
-				yali = XYData()		# x is time in both cases, y is x or y
+# 			for it in xrange(3) :
+# 				step = len(outim)		# coarsest search aligns the first 1/2 of the images against the second, step=step/2 each cycle
+# 				xali = XYData()		# this will contain the alignments which are hierarchically estimated and improved
+# 				yali = XYData()		# x is time in both cases, y is x or y
 
-				while step > 1 :
-					step /= 2
-					i0 = 0
+# 				while step > 1 :
+# 					step /= 2
+# 					i0 = 0
 
-					while i0 < len(outim) :
-						i1 = min(i0+step, len(outim))
-						av0 = sum(outim[i0:i1])
+# 					while i0 < len(outim) :
+# 						i1 = min(i0+step, len(outim))
+# 						av0 = sum(outim[i0:i1])
 
-						tloc=(i0+i1-1)/2.0		# the "time" of the current average
-						lrange=hypot(xali.get_yatx_smooth(i1,1)-xali.get_yatx_smooth(i0,1),yali.get_yatx_smooth(i1,1)-yali.get_yatx_smooth(i0,1))*1.5
-						if lrange<8 : lrange=8		
+# 						tloc=(i0+i1-1)/2.0		# the "time" of the current average
+# 						lrange=hypot(xali.get_yatx_smooth(i1,1)-xali.get_yatx_smooth(i0,1),yali.get_yatx_smooth(i1,1)-yali.get_yatx_smooth(i0,1))*1.5
+# 						if lrange<8 : lrange=8		
 						
-						guess=(xali.get_yatx_smooth(tloc,1),yali.get_yatx_smooth(tloc,1))
-						if xali.get_size()>1 and guess[0]<2 and guess[1]<2 : 
-							i0+=step
-							continue				# if the predicted shift is too small, then we won't get it right anyway, so we just interpolate
+# 						guess=(xali.get_yatx_smooth(tloc,1),yali.get_yatx_smooth(tloc,1))
+# 						if xali.get_size()>1 and guess[0]<2 and guess[1]<2 : 
+# 							i0+=step
+# 							continue				# if the predicted shift is too small, then we won't get it right anyway, so we just interpolate
 						
-##						print step,i0,xali.get_yatx_smooth(tloc,1),yali.get_yatx_smooth(tloc,1),lrange,
-	#					dx,dy,Z=align_subpixel(av0,av1,guess=alignments[i1+step/2]-alignments[i0+step/2],localrange=LA.norm(alignments[i1+step-1]-alignments[i0]))
+# ##						print step,i0,xali.get_yatx_smooth(tloc,1),yali.get_yatx_smooth(tloc,1),lrange,
+# 	#					dx,dy,Z=align_subpixel(av0,av1,guess=alignments[i1+step/2]-alignments[i0+step/2],localrange=LA.norm(alignments[i1+step-1]-alignments[i0]))
 
-						if step==len(outim)/2 :
-							dx,dy,Z=align(aliavg,av0,guess=(0,0),localrange=192,verbose=options.verbose-1)
-						else:
-							dx,dy,Z=align(aliavg,av0,guess=guess,localrange=lrange,verbose=options.verbose-1)
-##						print dx,dy,Z			
+# 						if step==len(outim)/2 :
+# 							dx,dy,Z=align(aliavg,av0,guess=(0,0),localrange=192,verbose=options.verbose-1)
+# 						else:
+# 							dx,dy,Z=align(aliavg,av0,guess=guess,localrange=lrange,verbose=options.verbose-1)
+# ##						print dx,dy,Z			
 						
-						xali.insort(tloc,dx)
-						yali.insort(tloc,dy)
+# 						xali.insort(tloc,dx)
+# 						yali.insort(tloc,dy)
 											
-						i0+=step
+# 						i0+=step
 					
-					# possible sometimes to have multiple values for the same x (img #), average in these cases
+# 					# possible sometimes to have multiple values for the same x (img #), average in these cases
 
-					xali.dedupx()
-					yali.dedupx()
+# 					xali.dedupx()
+# 					yali.dedupx()
 					
-					# Smoothing
-					# we should have all possible x-values at this point, so we just do a very simplistic smoothing
+# 					# Smoothing
+# 					# we should have all possible x-values at this point, so we just do a very simplistic smoothing
 
-					for i in xrange(xali.get_size()-2):
-						xali.set_y(i+1,(xali.get_y(i)+xali.get_y(i+1)*2.0+xali.get_y(i+2))/4.0)
-						yali.set_y(i+1,(yali.get_y(i)+yali.get_y(i+1)*2.0+yali.get_y(i+2))/4.0)
+# 					for i in xrange(xali.get_size()-2):
+# 						xali.set_y(i+1,(xali.get_y(i)+xali.get_y(i+1)*2.0+xali.get_y(i+2))/4.0)
+# 						yali.set_y(i+1,(yali.get_y(i)+yali.get_y(i+1)*2.0+yali.get_y(i+2))/4.0)
 					
-##					print ["%6.1f"%i for i in xali.get_xlist()]
-##					print ["%6.2f"%i for i in xali.get_ylist()]
-##					print ["%6.2f"%i for i in yali.get_ylist()]
+# ##					print ["%6.1f"%i for i in xali.get_xlist()]
+# ##					print ["%6.2f"%i for i in xali.get_ylist()]
+# ##					print ["%6.2f"%i for i in yali.get_ylist()]
 					
-				outim2=[outim[i].get_clip(Region(-xali.get_yatx_smooth(i,1),-yali.get_yatx_smooth(i,1),outim[i]["nx"],outim[i]["ny"])) for i in xrange(len(outim))]
+# 				outim2=[outim[i].get_clip(Region(-xali.get_yatx_smooth(i,1),-yali.get_yatx_smooth(i,1),outim[i]["nx"],outim[i]["ny"])) for i in xrange(len(outim))]
 				
-				aliavg=sum(outim2)
-				aliavg.mult(1.0/len(outim2))
+# 				aliavg=sum(outim2)
+# 				aliavg.mult(1.0/len(outim2))
 			
-				if options.verbose>2 : 
-					out=file("align%d.txt"%it,"w")
-					for i in xrange(xali.get_size()):
-						out.write("%1.2f\t%1.2f\n"%(xali.get_y(i),yali.get_y(i)));
-					out=file("alignsm%d.txt"%it,"w")
-					for i in xrange(len(outim)):
-						out.write("%1.2f\t%1.2f\n"%(xali.get_yatx_smooth(i,1),yali.get_yatx_smooth(i,1)));
-					xali.write_file("alignx%d.txt"%it)
-					yali.write_file("aligny%d.txt"%it)
+# 				if options.verbose>2 : 
+# 					out=file("align%d.txt"%it,"w")
+# 					for i in xrange(xali.get_size()):
+# 						out.write("%1.2f\t%1.2f\n"%(xali.get_y(i),yali.get_y(i)));
+# 					out=file("alignsm%d.txt"%it,"w")
+# 					for i in xrange(len(outim)):
+# 						out.write("%1.2f\t%1.2f\n"%(xali.get_yatx_smooth(i,1),yali.get_yatx_smooth(i,1)));
+# 					xali.write_file("alignx%d.txt"%it)
+# 					yali.write_file("aligny%d.txt"%it)
 
-			aliavg.write_image(outname[:-4]+"_aliavg.hdf",0)
-			if options.save_aligned:
-				for i,im in enumerate(outim2): im.write_image(outname[:-4]+"_align.hdf",i,IMAGE_HDF, False, None, EM_USHORT)
+# 			aliavg.write_image(outname[:-4]+"_aliavg.hdf",0)
+
+# 			if options.save_aligned:
+# 				for i,im in enumerate(outim2): im.write_image(outname[:-4]+"_align.hdf",i,IMAGE_HDF, False, None, EM_USHORT)
 				
-			if options.verbose>2 : 
-				t=sum(outim)
-				t.mult(1.0/len(outim2))
-				t=t.get_clip(Region(500,500,3072,3072))
-				aliavg=aliavg.get_clip(Region(500,500,3072,3072))
-				display([t,aliavg],True)
+# 			if options.verbose>2 : 
+# 				t=sum(outim)
+# 				t.mult(1.0/len(outim2))
+# 				t=t.get_clip(Region(500,500,3072,3072))
+# 				aliavg=aliavg.get_clip(Region(500,500,3072,3072))
+# 				display([t,aliavg],True)
 
 		# we iterate the alignment process several times
 
@@ -474,6 +485,270 @@ def process_movie(fsp,dark,gain,first,flast,step,options):
 			#if options.save_aligned:
 				#for i,im in enumerate(outim2): im.write_image(outname[:-4]+"_align.hdf",i)
 			#if options.verbose>2 : display(fav,True)
+
+		if options.align_frames :
+
+			# if len(argv)<3 :
+			# 	print """Usage:
+			# 	movie_ccf <movie stack> <num threads> [gain norm img]
+
+			# Will align a movie stack using all-vs-all CCFs with a global optimization strategy. Several outputs
+			# including different frame subsets are produced, as well as a text file with the translation vector map.
+			# """
+
+			data = outim
+			#data=EMData.read_images(argv[1])
+
+			n=len(data)
+			nx=data[0]["nx"]
+			ny=data[0]["ny"]
+			print "{} frames read {} x {}".format(n,nx,ny)
+
+			ccfs=Queue.Queue(0)
+
+			# prepare image data by clipping and FFT'ing all tiles
+			# this is threaded as well
+			immx=[0]*n
+			thds=[threading.Thread(target=split_fft,args=(data[i],i,options.optbox,options.optstep,ccfs)) for i in range(n)]
+			print "Precompute FFTs: {} threads".format(len(thds))
+			t0=time()
+
+			thrtolaunch=0
+			while thrtolaunch<len(thds) or threading.active_count()>1:
+				if thrtolaunch<len(thds) :
+					while (threading.active_count()==options.threads ) : sleep(.1)
+			#		if options.verbose : print "Starting thread {}/{}".format(thrtolaunch,len(thds))
+					thds[thrtolaunch].start()
+					thrtolaunch+=1
+				else: sleep(1)
+
+				while not ccfs.empty():
+					i,d=ccfs.get()
+					immx[i]=d
+					
+			for th in thds: th.join()
+
+			# create threads
+			thds=[]
+			i=0
+			for ima in range(n-1):
+				for imb in range(ima+1,n):
+					thds.append(threading.Thread(target=calc_ccf,args=((ima,imb),options.optbox,options.optstep,immx[ima],immx[imb],ccfs)))
+					i+=1
+
+			print "{:1.1f} s\nCompute ccfs: {} threads".format(time()-t0,len(thds))
+			t0=time()
+
+			# here we run the threads and save the results, no actual alignment done here
+			csum2={}
+			thrtolaunch=0
+			while thrtolaunch<len(thds) or threading.active_count()>1:
+				# If we haven't launched all threads yet, then we wait for an empty slot, and launch another
+				# note that it's ok that we wait here forever, since there can't be new results if an existing
+				# thread hasn't finished.
+				if thrtolaunch<len(thds) :
+					while (threading.active_count()==options.threads ) : sleep(.1)
+					#if options.verbose : print "Starting thread {}/{}".format(thrtolaunch,len(thds))
+					thds[thrtolaunch].start()
+					thrtolaunch+=1
+				else:
+					sleep(1)
+
+				while not ccfs.empty():
+					i,d=ccfs.get()
+					csum2[i]=d
+
+				if options.verbose: 
+					print "  {}/{} {}\r".format(thrtolaunch,len(thds),threading.active_count()),
+					sys.stdout.flush()
+				
+					
+			for th in thds: th.join()
+
+			avgr=Averagers.get("minmax",{"max":0})
+			avgr.add_image_list(csum2.values())
+			csum=avgr.finish()
+			#csum=sum(csum2.values())
+			#csum.mult(1.0/len(csum2))
+			#csum.process_inplace("normalize.edgemean")
+			#display(csum)
+			#csum.write_image("a.hdf",0)
+			for i,k in enumerate(sorted(csum2.keys())): 
+				im=csum2[k]
+			#	norm=im[BOX/2,BOX/2]/csum[BOX/2,BOX/2]
+			#	norm=im.get_clip(Region(BOX/2-5,BOX/2-5,11,11))["mean"]/csum.get_clip(Region(BOX/2-5,BOX/2-5,11,11))["mean"]
+			#	im.write_image("aa.hdf",i)
+
+			# This has been disabled since it eliminates the peak for zero shift. Instead we try the zero/zero elimination hack
+				norm=1.0
+				im.sub(csum*norm)
+
+				# set the 0,0 peak to the average of neighboring pixels to reduce fixed pattern noise issues (this worked poorly)
+				# im[BOX/2,BOX/2]=(im[BOX/2-1,BOX/2]+im[BOX/2+1,BOX/2]+im[BOX/2,BOX/2+1]+im[BOX/2,BOX/2-1])
+
+			#	s=im.process("math.sub.optimal",{"ref":csum,"ctfweight":0})
+
+			#	im.write_image("a.hdf",i+1)
+				# This is critical. Without this, after filtering we get too many false peaks
+				thr=im["mean"]+im["sigma"]*1.5
+				im.process_inplace("threshold.belowtozero",{"minval":thr})
+
+			#####
+			# Alignment code
+			#####
+
+			# array of x,y locations of each frame, all relative to the last frame in the series, which will always have 0,0 shift
+			# we store the value for the last frame as well as a conveience
+			locs=[0]*(n*2)
+
+			#print csum2.keys()
+
+			print "{:1.1f} s\nAlignment optimization".format(time()-t0)
+			t0=time()
+
+			# we start with a heavy filter, optimize, then repeat for successively less filtration
+			for scale in [0.02,0.04,0.07,0.1,0.5]:
+				csum3={k:csum2[k].process("filter.lowpass.gauss",{"cutoff_abs":scale}) for k in csum2.keys()}
+
+				incr=[16]*len(locs)
+				incr[-1]=incr[-2]=4	# if step is zero for last 2, it gets stuck as an outlier, so we just make the starting step smaller
+				simp=Simplex(qual,locs,incr,data=csum3)
+				locs=simp.minimize(maxiters=int(100/scale),epsilon=.01)[0]
+				locs=[int(floor(i*10+.5))/10.0 for i in locs]
+				print locs
+				if VERBOSE:
+					out=file("path_{:02d}.txt".format(int(1.0/scale)),"w")
+					for i in xrange(0,len(locs),2): out.write("%f\t%f\n"%(locs[i],locs[i+1]))
+
+			# compute the quality of each frame
+			quals=[0]*n			# quality of each frame based on its correlation peak summed over all images
+			cen=csum2[(0,1)]["nx"]/2
+			for i in xrange(n-1):
+				for j in xrange(i+1,n):
+					val=csum2[(i,j)].sget_value_at_interp(int(cen+locs[j*2]-locs[i*2]),int(cen+locs[j*2+1]-locs[i*2+1]))*sqrt(float(n-fabs(i-j))/n)
+					quals[i]+=val
+					quals[j]+=val
+
+			# round for integer only shifting
+			#locs=[int(floor(i+.5)) for i in locs]
+
+			print "{:1.1f}Write unaligned".format(time()-t0)
+			t0=time()
+
+			#write out the unaligned average movie
+			out=qsum(data)
+			out.write_image(argv[1].rsplit(".",1)[0]+"_noali.hdf",0)
+
+			print "Shift images ({})".format(time()-t0)
+			t0=time()
+			#write individual aligned frames
+			for i,im in enumerate(data):
+				im.translate(int(floor(locs[i*2]+.5)),int(floor(locs[i*2+1]+.5)),0)
+			#	im.write_image("a_all_ali.hdf",i)
+			out=qsum(data)
+			out.write_image(argv[1].rsplit(".",1)[0]+"_allali.hdf",0)
+
+			#out=sum(data[5:15])	# FSC with the earlier frames instead of whole average
+			# compute fsc between each aligned frame and the average
+			# we tile this for better curves, since we don't need the detail
+			fscq=[0]*n
+			if options.optfsc:
+				for i in range(n):
+					rgnc=0
+					for x in range(64,out["nx"]-192,64):
+						for y in range(64,out["ny"]-192,64):
+							rgnc+=1.0
+							cmpto=out.get_clip(Region(x,y,64,64))
+							cscen=data[i].get_clip(Region(x,y,64,64))
+							s,f=calcfsc(cmpto,cscen)
+							f=array(f)
+							try: fs+=f
+							except: fs=f
+					fs/=rgnc
+					fs=list(fs)
+					fscq.append(qsum(fs[2:24]))
+				
+					Util.save_data(s[1],s[1]-s[0],fs[1:-1],argv[1].rsplit(".",1)[0]+"_fsc_{:02d}.txt".format(i))
+
+			print "{:1.1f}\nSubsets".format(time()-t0)
+			t0=time()
+			# write translations and qualities 
+			out=open(argv[1].rsplit(".",1)[0]+"_info.txt","w")
+			out.write("#i,dx,dy,dr,rel dr,qual,(opt)fscqual\n")
+			for i in range(n):
+				out.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(i,locs[i*2],locs[i*2+1],hypot(locs[i*2],locs[i*2+1]),hypot(locs[i*2]-locs[i*2-2],locs[i*2+1]-locs[i*2-1]),quals[i],fscq[i]))
+
+			thr=max(quals)*0.6	# max correlation cutoff for inclusion
+			best=[im for i,im in enumerate(data) if quals[i]>thr]
+			out=qsum(best)
+			print "Keeping {}/{} frames".format(len(best),len(data))
+			out.write_image(argv[1].rsplit(".",1)[0]+"_goodali.hdf",0)
+
+			thr=max(quals)*0.75	# max correlation cutoff for inclusion
+			best=[im for i,im in enumerate(data) if quals[i]>thr]
+			out=qsum(best)
+			print "Keeping {}/{} frames".format(len(best),len(data))
+			out.write_image(argv[1].rsplit(".",1)[0]+"_bestali.hdf",0)
+
+			# skip the first 4 frames then keep 10
+			out=qsum(data[4:14])
+			out.write_image(argv[1].rsplit(".",1)[0]+"_4-14.hdf",0)
+
+			# Write out the translated correlation maps for debugging
+			#cen=csum2[(0,1)]["nx"]/2
+			#n=len(locs)/2
+			#for ii,k in enumerate(sorted(csum2.keys())): 
+			#	i,j=k
+			#	csum2[k].translate(-int(locs[j*2]-locs[i*2]),-int(locs[j*2+1]-locs[i*2+1]),0)
+			#	csum2[k].write_image("aa.hdf",ii)
+
+			print "{:1.1f}\nDone".format(time()-t0)
+
+
+# CCF calculation
+def calc_ccf(N,box,step,dataa,datab,out):
+	for i in range(len(dataa)):
+		c=dataa[i].calc_ccf(datab[i],fp_flag.CIRCULANT,True)
+		try: csum.add(c)
+		except: csum=c
+#	csum.process_inplace("normalize.edgemean")
+#	csum.process_inplace("filter.lowpass.gauss",{"cutoff_abs":0.15})
+	out.put((N,csum))
+
+# preprocess regions by normalizing and doing FFT
+def split_fft(img,i,box,step,out):
+	lst=[]
+	for dx in range(box/2,nx-box,step):
+		for dy in range(box/2,ny-box,step):
+			lst.append(img.get_clip(Region(dx,dy,box,box)).process("normalize.edgemean").do_fft())
+	out.put((i,lst))
+
+def calcfsc(map1,map2):
+	fsc=map1.calc_fourier_shell_correlation(map2)
+	third=len(fsc)/3
+	xaxis=fsc[0:third]
+	fsc=fsc[third:2*third]
+
+	return(xaxis,fsc)
+
+def qsum(imlist):
+	avg=Averagers.get("mean")
+	avg.add_image_list(imlist)
+	return avg.finish()
+
+def qual(locs,ccfs):
+	"""computes the quality of the current alignment. Passed a dictionary of CCF images keyed by (i,j) tuple and
+	an (x0,y0,x1,y1,...)  shift array. Smaller numbers are better since that's what the simplex does"""
+
+	nrg=0.0
+	cen=ccfs[(0,1)]["nx"]/2
+	n=len(locs)/2
+	for i in xrange(n-1):
+		for j in xrange(i+1,n):
+#			nrg-=ccfs[(i,j)].sget_value_at_interp(int(cen+locs[j*2]-locs[i*2]),int(cen+locs[j*2+1]-locs[i*2+1]))
+			# This is a recognition that we will tend to get better correlation with near neighbors in the sequence
+			nrg-=ccfs[(i,j)].sget_value_at_interp(int(cen+locs[j*2]-locs[i*2]),int(cen+locs[j*2+1]-locs[i*2+1]))*sqrt(float(n-fabs(i-j))/n)
+	return nrg
 
 def align(s1,s2,guess=(0,0),localrange=192,verbose=0):
 	"""Aligns a pair of images, and returns a (dx,dy,Z) tuple. Z is the Z-score of the best peak, not a shift.
