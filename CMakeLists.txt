@@ -407,6 +407,7 @@ ENDIF(ENABLE_PNG)
 
 FIND_PATH(NUMPY_INCLUDE_PATH numpy/arrayobject.h
 	$ENV{SP_DIR}/numpy/core/include
+		$ENV{PREFIX}/include
 )
 INCLUDE_DIRECTORIES(${NUMPY_INCLUDE_PATH}) 
 
