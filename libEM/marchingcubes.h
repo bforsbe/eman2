@@ -55,9 +55,8 @@ using std::ostream;
 	#include "OpenGL/gl.h"
 	#include "OpenGL/glext.h"
 #else // WIN32, LINUX
-//	#include "GL/gl.h"
-//	#include "GL/glext.h"
-	#include <GLUT/glut.h>
+	#include "GL/gl.h"
+	#include "GL/glext.h"
 #endif	//__APPLE__
 
 namespace EMAN
