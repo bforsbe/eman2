@@ -304,9 +304,10 @@ IF(ENABLE_FFTW3)
     OPTION(ENABLE_NATIVE_FFT "enable native fft support" OFF)
     OPTION(ENABLE_ACML_FFT "enable AMD Core Math Library fft support" OFF)
 
-    CHECK_REQUIRED_LIB(FFTW3 fftw3f fftw3.h)
-
     IF(NOT WIN32)
+	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+	find_package(FFTW3F REQUIRED)
+#    CHECK_REQUIRED_LIB(FFTW3 fftw3f fftw3.h)
        CHECK_REQUIRED_LIB(FFTW3d fftw3 fftw3.h)
     ENDIF(NOT WIN32)
 
