@@ -35,6 +35,10 @@
 
 #ifdef EM_JPEG
 
+#ifdef WIN32
+#include <windows.h>
+#endif	// WIN32
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
