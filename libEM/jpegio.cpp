@@ -37,10 +37,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "jpegio.h"
 #include "geometry.h"
 #include "util.h"
-#include <math.h>
 
 using namespace EMAN;
 

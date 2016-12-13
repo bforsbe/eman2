@@ -53,14 +53,14 @@
 #define MUTEX pthread_mutex_t
 #endif
 
-#include "sparx/emconstants.h"
-#include "exception.h"
 #include <vector>
 #include <iostream>
 
 #include <string>
 using std::string;
 
+#include "sparx/emconstants.h"
+#include "exception.h"
 
 #include <boost/multi_array.hpp>
 #include <boost/tuple/tuple.hpp>
