@@ -54,7 +54,7 @@
 #else // WIN32, LINUX
 	#include "GL/gl.h"
 	#include "GL/glu.h"
-//	#include "GL/glext.h"
+	#include "GL/glext.h"
 	#include "GL/glut.h"
 #endif	//__APPLE__
 
