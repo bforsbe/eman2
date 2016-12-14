@@ -216,6 +216,9 @@ find_package(GLUT REQUIRED)
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(ZLIB REQUIRED)
+find_package(GSL REQUIRED)
+
+set(GSL_LIBRARY ${GSL_LIBRARIES})
 
 set(BOOST_LIBRARY ${Boost_LIBRARIES} CACHE PATH "")
 set(OPENGL_LIBRARY ${OPENGL_gl_LIBRARY} CACHE PATH "")
