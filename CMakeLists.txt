@@ -206,7 +206,7 @@ find_package(GSL REQUIRED)
 
 set(GSL_LIBRARY ${GSL_LIBRARIES})
 
-add_definitions(-DGSL_DLL)
+add_definitions(-DGSL_DLL -DFTGL_LIBRARY_STATIC)
 message("GSL_LIBRARY: ${GSL_LIBRARY}")
 message("GSL_CBLAS_LIBRARY: ${GSL_CBLAS_LIBRARY}")
 
