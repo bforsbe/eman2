@@ -120,15 +120,8 @@ ELSEIF (ENABLE_OPTIMIZE_X86_64)
 #    SET (OPT_FLAGS "-O5 -ansi -mfpmath=both -march=core-avx-i -m64 -ffast-math -pipe")
 ELSEIF (ENABLE_OPTIMIZE_WINDOWS_VC)
 	SET (OPT_FLAGS "/Ox /DHAVE_INLINE")
-ELSEIF (ENABLE_OPTIMIZE_PHI)
-	SET (OPT_FLAGS "-fast")
-#	SET (OPT_FLAGS "-O3 -xHost")
 ELSE()
-    IF(WIN32)
-       SET(OPT_FLAGS "")
-    ELSE(WIN32)
-       SET (OPT_FLAGS "-O3 -ansi -ffast-math")     # This is the default
-    ENDIF(WIN32)
+    SET (OPT_FLAGS "-O3 -ansi -ffast-math")		# This is the default
 ENDIF()
 #MESSAGE("OPT_FLAGS = " ${OPT_FLAGS})
 
