@@ -66,5 +66,5 @@ except:
 	exit()	
 
 app = EMApp()
-QtGui.QMessageBox.warning(None,"Welcome to EMAN2!","<b><big>"+helpstring.replace("\n","<br>")+"</big></b>")
+# QtGui.QMessageBox.warning(None,"Welcome to EMAN2!","<b><big>"+helpstring.replace("\n","<br>")+"</big></b>")
 
