@@ -18,12 +18,12 @@ SET(DBG $ENV{DEBUG})
 
 FOREACH(f ${e2programs})
 	IF(DBG MATCHES "y")
-		MESSAGE("Copied file ${f} to bin.")
+		MESSAGE("Copied file ${f} to ${CMAKE_INSTALL_PREFIX}/bin.")
 	ENDIF(DBG MATCHES "y")
 ENDFOREACH(f)
 
 INSTALL(PROGRAMS ${e2programs}
-	DESTINATION bin
+	DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
 		COMPONENT Programs
 )
 #INSTALL(PROGRAMS    e2boxer.py 
@@ -31,23 +31,23 @@ INSTALL(PROGRAMS ${e2programs}
 #                    e2ctf.py 
 #                    e2history.py
 #                    #....
-#        DESTINATION bin
+#        DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
 #)
 
 IF(WIN32)
 	INSTALL(FILES e2boxer.py
-		DESTINATION bin
+		DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
 		RENAME e2boxer.pyw)
 	INSTALL(FILES e2display.py
-		DESTINATION bin
+		DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
 		RENAME e2display.pyw)
 ENDIF(WIN32)
 
 # INSTALL(PROGRAMS e2ctf_auto.py
-#       DESTINATION bin
+#       DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
 #       )
 
-# MESSAGE("Installed e2ctf_auto.py in bin manually (failed earlier for some reason.")
+# MESSAGE("Installed e2ctf_auto.py in ${CMAKE_INSTALL_PREFIX}/bin manually (failed earlier for some reason.")
 
 string(TIMESTAMP EMAN_TIMESTAMP "%Y-%m-%d %H:%M")
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/e2version.py.in

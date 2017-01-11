@@ -1,6 +1,6 @@
 FILE(GLOB sxfiles "${CMAKE_CURRENT_SOURCE_DIR}/*.py")
 
 INSTALL(PROGRAMS ${sxfiles}
-  	DESTINATION    bin
+  	DESTINATION    ${CMAKE_INSTALL_PREFIX}/bin
 		COMPONENT Programs
 )
