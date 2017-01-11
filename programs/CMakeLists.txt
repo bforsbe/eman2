@@ -24,6 +24,7 @@ ENDFOREACH(f)
 
 INSTALL(PROGRAMS ${e2programs}
 	DESTINATION bin
+		COMPONENT Programs
 )
 #INSTALL(PROGRAMS    e2boxer.py 
 #                    e2version.py 
