@@ -95,12 +95,12 @@ INSTALL(FILES ${empythonlibs} DESTINATION ${CMAKE_INSTALL_PREFIX}/EMAN2)
 
 # INSTALL(FILES ${empythonlibs} DESTINATION lib)
 
-FOREACH(f ${empythonlibs})
-	INSTALL(FILES ${f} DESTINATION lib)
-	IF(DBG MATCHES "y")
-		MESSAGE("Copied file ${f} to lib.")
-	ENDIF(DBG MATCHES "y")
-ENDFOREACH(f)
+#FOREACH(f ${empythonlibs})
+#	INSTALL(FILES ${f} DESTINATION lib)
+#	IF(DBG MATCHES "y")
+#		MESSAGE("Copied file ${f} to lib.")
+#	ENDIF(DBG MATCHES "y")
+#ENDFOREACH(f)
 
 # MESSAGE("empy list: ${empythonlibs}")
 
