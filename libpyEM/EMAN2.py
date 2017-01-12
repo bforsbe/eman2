@@ -44,7 +44,6 @@ import subprocess
 from EMAN2_cppwrap import *
 from pyemtbx.imagetypes import *
 from pyemtbx.box import *
-from e2version import *
 import EMAN2db, EMAN2jsondb
 import argparse, copy
 import glob
