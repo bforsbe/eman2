@@ -22,10 +22,10 @@ FOREACH(f ${e2programs})
 	ENDIF(DBG MATCHES "y")
 ENDFOREACH(f)
 
-INSTALL(PROGRAMS ${e2programs}
-	DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
-		COMPONENT Programs
-)
+#INSTALL(PROGRAMS ${e2programs}
+#	DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
+#		COMPONENT Programs
+#)
 INSTALL(PROGRAMS ${e2programs}
 		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}
 		COMPONENT Programs
@@ -40,11 +40,11 @@ INSTALL(PROGRAMS ${e2programs}
 
 IF(WIN32)
 	INSTALL(FILES e2boxer.py
-		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
+		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}
 		RENAME e2boxer.pyw
 			COMPONENT Programs)
 	INSTALL(FILES e2display.py
-		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
+		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}
 		RENAME e2display.pyw
 			COMPONENT Programs)
 ENDIF(WIN32)
@@ -56,9 +56,9 @@ ENDIF(WIN32)
 # MESSAGE("Installed e2ctf_auto.py in ${LIBRARY_OUTPUT_DIRECTORY}/bin manually (failed earlier for some reason.")
 
 string(TIMESTAMP EMAN_TIMESTAMP "%Y-%m-%d %H:%M")
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/e2version.py.in
-				${LIBRARY_OUTPUT_DIRECTORY}/bin/e2version.py
-				)
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/e2version.py.in
+#				${LIBRARY_OUTPUT_DIRECTORY}/bin/e2version.py
+#				)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/e2version.py.in
 		${LIBRARY_OUTPUT_DIRECTORY}/e2version.py
 		)
