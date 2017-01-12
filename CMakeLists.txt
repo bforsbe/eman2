@@ -590,3 +590,6 @@ FOREACH (TEST ${TESTS})
 
 ENDFOREACH (TEST)
 
+add_custom_target(Programs
+		COMMAND ${CMAKE_COMMAND} -DCOMPONENT=Programs -P cmake_install.cmake
+		)
