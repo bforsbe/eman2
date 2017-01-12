@@ -26,6 +26,10 @@ INSTALL(PROGRAMS ${e2programs}
 	DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
 		COMPONENT Programs
 )
+INSTALL(PROGRAMS ${e2programs}
+		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}
+		COMPONENT Programs
+		)
 #INSTALL(PROGRAMS    e2boxer.py 
 #                    e2version.py 
 #                    e2ctf.py 
