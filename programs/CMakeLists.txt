@@ -41,10 +41,12 @@ INSTALL(PROGRAMS ${e2programs}
 IF(WIN32)
 	INSTALL(FILES e2boxer.py
 		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
-		RENAME e2boxer.pyw)
+		RENAME e2boxer.pyw
+			COMPONENT Programs)
 	INSTALL(FILES e2display.py
 		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
-		RENAME e2display.pyw)
+		RENAME e2display.pyw
+			COMPONENT Programs)
 ENDIF(WIN32)
 
 # INSTALL(PROGRAMS e2ctf_auto.py

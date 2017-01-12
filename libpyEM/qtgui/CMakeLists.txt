@@ -4,7 +4,7 @@ FILE(GLOB exclusionlist "em3Dhelloworld.py")
 # MESSAGE("gui files: ${qtguifiles}")
 
 LIST(REMOVE_ITEM qtguifiles ${exclusionlist})
-INSTALL(FILES ${qtguifiles} DESTINATION ${LIBRARY_OUTPUT_DIRECTORY})
+INSTALL(FILES ${qtguifiles} DESTINATION ${LIBRARY_OUTPUT_DIRECTORY} COMPONENT Programs)
 # MESSAGE("reduced gui files: ${qtguifiles}")
 
 # INSTALL(FILES ${qtguifiles} DESTINATION lib)
