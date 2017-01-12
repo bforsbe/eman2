@@ -18,12 +18,12 @@ SET(DBG $ENV{DEBUG})
 
 FOREACH(f ${e2programs})
 	IF(DBG MATCHES "y")
-		MESSAGE("Copied file ${f} to ${CMAKE_INSTALL_PREFIX}/bin.")
+		MESSAGE("Copied file ${f} to ${LIBRARY_OUTPUT_DIRECTORY}/bin.")
 	ENDIF(DBG MATCHES "y")
 ENDFOREACH(f)
 
 INSTALL(PROGRAMS ${e2programs}
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+	DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
 		COMPONENT Programs
 )
 #INSTALL(PROGRAMS    e2boxer.py 
@@ -31,30 +31,30 @@ INSTALL(PROGRAMS ${e2programs}
 #                    e2ctf.py 
 #                    e2history.py
 #                    #....
-#        DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+#        DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
 #)
 
 IF(WIN32)
 	INSTALL(FILES e2boxer.py
-		DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
 		RENAME e2boxer.pyw)
 	INSTALL(FILES e2display.py
-		DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+		DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
 		RENAME e2display.pyw)
 ENDIF(WIN32)
 
 # INSTALL(PROGRAMS e2ctf_auto.py
-#       DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+#       DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/bin
 #       )
 
-# MESSAGE("Installed e2ctf_auto.py in ${CMAKE_INSTALL_PREFIX}/bin manually (failed earlier for some reason.")
+# MESSAGE("Installed e2ctf_auto.py in ${LIBRARY_OUTPUT_DIRECTORY}/bin manually (failed earlier for some reason.")
 
 string(TIMESTAMP EMAN_TIMESTAMP "%Y-%m-%d %H:%M")
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/e2version.py.in
-				${CMAKE_INSTALL_PREFIX}/bin/e2version.py
+				${LIBRARY_OUTPUT_DIRECTORY}/bin/e2version.py
 				)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/e2version.py.in
-		${CMAKE_INSTALL_PREFIX}/EMAN2/e2version.py
+		${LIBRARY_OUTPUT_DIRECTORY}/e2version.py
 		)
 # install (CODE "execute_process(COMMAND sed -i.bk \"s/BUILD_DATE/${date}/g\" ${CMAKE_INSTALL_PREFIX}/bin/e2version.py)")
 # install (CODE "execute_process(COMMAND rm ${CMAKE_INSTALL_PREFIX}/bin/e2version.py.bk)")
