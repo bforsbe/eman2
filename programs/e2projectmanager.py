@@ -2081,7 +2081,7 @@ class ProjectDialog(QtGui.QDialog):
 	def _on_cancel(self):
 		self.done(1)
 
-if __name__ == "__main__":
+def main():
 	import sys
 
 	if os.path.isdir("EMAN2DB") and os.path.isfile("EMAN2DB/project.bdb") :
@@ -2099,3 +2099,6 @@ GUI directly to browse the contents of old-style projects."""
 	try: pm.raise_()
 	except: pass
 	app.exec_()
+
+if __name__ == "__main__":
+	main()
