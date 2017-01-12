@@ -12,7 +12,7 @@ LIST(REMOVE_ITEM e2programs ${exclusion_list})
 # SET(E2D $ENV{EMAN2DIR})
 # SET(HOM $ENV{HOME})
 
-SET(DBG $ENV{DEBUG})
+SET(DBG "y")
 
 # MESSAGE("envs: '${ED}' '${E2D}' '${HOM}' '${DBG}'")
 
