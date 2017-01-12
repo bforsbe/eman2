@@ -107,12 +107,12 @@ INSTALL(FILES ${empythonlibs} DESTINATION ${CMAKE_INSTALL_PREFIX}/EMAN2)
 
 # INSTALL(FILES ${headerfiles} DESTINATION include)
 
-FOREACH(f ${headerfiles})
-	INSTALL(FILES ${f} DESTINATION include)
-	IF(DBG MATCHES "y")
-		MESSAGE("Copied file ${f} to include.")
-	ENDIF(DBG MATCHES "y")
-ENDFOREACH(f)
+#FOREACH(f ${headerfiles})
+#	INSTALL(FILES ${f} DESTINATION include)
+#	IF(DBG MATCHES "y")
+#		MESSAGE("Copied file ${f} to include.")
+#	ENDIF(DBG MATCHES "y")
+#ENDFOREACH(f)
 
 # MESSAGE("hdr files: ${headerfiles}")
 ADD_SUBDIRECTORY(qtgui)
