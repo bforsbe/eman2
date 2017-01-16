@@ -211,7 +211,7 @@ find_package(JPEG REQUIRED)
 find_package(ZLIB REQUIRED)
 
 if (WIN32)
-	find_package(SZIP)
+#	find_package(SZIP)
 endif ()
 
 find_package(GSL REQUIRED)
@@ -222,6 +222,7 @@ add_definitions(-DGSL_DLL -DFTGL_LIBRARY_STATIC)
 message("GSL_LIBRARY: ${GSL_LIBRARY}")
 message("GSL_CBLAS_LIBRARY: ${GSL_CBLAS_LIBRARY}")
 
+﻿set(SZIP_LIBRARY $ENV{LIBRARY_LIB}/libszlib.lib)
 set(BOOST_LIBRARY ${Boost_LIBRARIES} CACHE PATH "")
 set(OPENGL_LIBRARY ${OPENGL_gl_LIBRARY} CACHE PATH "")
 set(GL_LIBRARY ${OPENGL_gl_LIBRARY}     CACHE PATH "")
