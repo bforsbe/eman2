@@ -209,6 +209,11 @@ find_package(GLUT REQUIRED)
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(ZLIB REQUIRED)
+
+if (WIN32)
+	find_package(SZIP)
+endif ()
+
 find_package(GSL REQUIRED)
 
 set(GSL_LIBRARY ${GSL_LIBRARIES})
