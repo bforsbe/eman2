@@ -30,8 +30,8 @@
 #
 #
 
-from libpyUtils2 import *
-from libpyTransform2 import *
+from ..libpyUtils2 import *
+from ..libpyTransform2 import *
 
 IMAGE_MRC = EMUtil.ImageType.IMAGE_MRC
 IMAGE_SPIDER = EMUtil.ImageType.IMAGE_SPIDER
