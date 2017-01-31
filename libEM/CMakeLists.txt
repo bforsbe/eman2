@@ -187,6 +187,18 @@ IF(ENABLE_ACML_FFT)
 	TARGET_LINK_LIBRARIES(EM2 ${ACML_LIBRARY} ${G2C_LIBRARY})
 ENDIF(ENABLE_ACML_FFT)
 
+if(WIN32)
+    set(suffix .pyd)
+else()
+    set(suffix .so)
+endif()
+
+set_target_properties(EM2 GLEM2
+        PROPERTIES
+        PREFIX lib
+        SUFFIX ${suffix}
+        )
+
 IF(ENABLE_OPENGL)
     INSTALL(TARGETS EM2 GLEM2 
         DESTINATION lib)

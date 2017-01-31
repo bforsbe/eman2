@@ -13,19 +13,30 @@ IF(CMAKE_SYSTEM MATCHES "IRIX.*")
 ENDIF(CMAKE_SYSTEM MATCHES "IRIX.*")
 
 MACRO(ADD_PYSTE_LIB_WITH_SRC libname srcfile)
+	if(WIN32)
+		set(suffix .pyd)
+	else()
+		set(suffix .so)
+	endif()
+
+	set_target_properties(${libname}
+			PROPERTIES
+			PREFIX lib
+			SUFFIX ${suffix}
+			)
+
 	IF(WIN32)
 		ADD_LIBRARY(${libname} SHARED lib${libname}.cpp ${srcfile})		
 		TARGET_LINK_LIBRARIES(${libname} EM2 ${BOOST_LIBRARY} ${PYTHON_LIBRARY} ${GSL_CBLAS_LIBRARY} ${GSL_LIBRARY} ${FFTW3_LIBRARY} ${FFTW3F_LIBRARIES} ${GLUT_LIBRARY} ${GLUT_glut_LIBRARY} ${FREETYPE_LIBRARY})
-		INSTALL(FILES ${LIBRARY_OUTPUT_PATH}/release/${libname}.dll
-				DESTINATION	lib
-				RENAME lib${libname}.pyd)
+		INSTALL(TARGETS libname
+				DESTINATION	lib)
 	ELSE(WIN32)
 		IF(APPLE)
 			ADD_LIBRARY(${libname} SHARED lib${libname}.cpp ${srcfile})
 			TARGET_LINK_LIBRARIES(${libname} EM2 ${BOOST_LIBRARY} ${PYTHON_LIBRARY} ${GSL_CBLAS_LIBRARY} ${GSL_LIBRARY} ${FFTW3_LIBRARY} ${FFTW3F_LIBRARIES} ${GLUT_LIBRARY} ${GLUT_glut_LIBRARY} ${FREETYPE_LIBRARY})
-			INSTALL(FILES ${LIBRARY_OUTPUT_PATH}/lib${libname}.dylib
-				DESTINATION	lib
-				RENAME lib${libname}.so)	
+			INSTALL(TARGETS libname
+				DESTINATION	lib)
+			
 		ELSE(APPLE)
 			ADD_LIBRARY(${libname} SHARED lib${libname}.cpp ${srcfile})
 			TARGET_LINK_LIBRARIES(${libname} EM2 ${BOOST_LIBRARY} ${PYTHON_LIBRARY} ${GSL_CBLAS_LIBRARY} ${GSL_LIBRARY} ${FFTW3_LIBRARY} ${FFTW3F_LIBRARIES} ${GLUT_LIBRARY} ${GLUT_glut_LIBRARY} ${FREETYPE_LIBRARY})
