@@ -19,12 +19,6 @@ MACRO(ADD_PYSTE_LIB_WITH_SRC libname srcfile)
 		set(suffix .so)
 	endif()
 
-	set_target_properties(${libname}
-			PROPERTIES
-			PREFIX lib
-			SUFFIX ${suffix}
-			)
-
 	IF(WIN32)
 		ADD_LIBRARY(${libname} SHARED lib${libname}.cpp ${srcfile})		
 		TARGET_LINK_LIBRARIES(${libname} EM2 ${BOOST_LIBRARY} ${PYTHON_LIBRARY} ${GSL_CBLAS_LIBRARY} ${GSL_LIBRARY} ${FFTW3_LIBRARY} ${FFTW3F_LIBRARIES} ${GLUT_LIBRARY} ${GLUT_glut_LIBRARY} ${FREETYPE_LIBRARY})
@@ -43,6 +37,13 @@ MACRO(ADD_PYSTE_LIB_WITH_SRC libname srcfile)
 			INSTALL(TARGETS ${libname} DESTINATION lib)
 		ENDIF(APPLE)
 	ENDIF(WIN32)
+		
+	set_target_properties(${libname}
+			PROPERTIES
+			PREFIX lib
+			SUFFIX ${suffix}
+			)
+
 ENDMACRO(ADD_PYSTE_LIB_WITH_SRC)
 
 MACRO(ADD_PYSTE_LIB libname)
