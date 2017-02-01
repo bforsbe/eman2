@@ -38,6 +38,7 @@ from subprocess import *
 
 
 DATESTAMP="@EMAN_TIMESTAMP@"
+EMANVERSION="EMAN @EMAN_VERSION@"
 
 def main():
 	print(EMANVERSION + ' (GITHUB: ' + DATESTAMP +')')
