@@ -197,7 +197,6 @@ set_target_properties(EM2 GLEM2
         PROPERTIES
         PREFIX lib
         SUFFIX ${suffix}
-        INSTALL_RPATH "@loader_path/."
         )
 
 IF(ENABLE_OPENGL)

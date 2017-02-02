@@ -42,7 +42,6 @@ MACRO(ADD_PYSTE_LIB_WITH_SRC libname srcfile)
 			PROPERTIES
 			PREFIX lib
 			SUFFIX ${suffix}
-			INSTALL_RPATH "@loader_path/."
 			)
 
 ENDMACRO(ADD_PYSTE_LIB_WITH_SRC)
