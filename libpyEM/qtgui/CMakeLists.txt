@@ -12,7 +12,7 @@ LIST(REMOVE_ITEM qtguifiles ${exclusionlist})
 SET (DBG $ENV{DEBUG})
 
 FOREACH(f ${qtguifiles})
-	INSTALL(FILES ${f} DESTINATION lib)
+	INSTALL(FILES ${f} DESTINATION ${SETUP_DIR}/lib)
 	IF(DBG MATCHES "y")
 		MESSAGE("Copied Qt GUI file ${f} to lib")
 	ENDIF(DBG MATCHES "y")

@@ -107,7 +107,7 @@ FILE(GLOB empythonlibs "${CMAKE_CURRENT_SOURCE_DIR}/*.py")
 # INSTALL(FILES ${empythonlibs} DESTINATION lib)
 
 FOREACH(f ${empythonlibs})
-	INSTALL(FILES ${f} DESTINATION lib)
+	INSTALL(FILES ${f} DESTINATION ${SETUP_DIR}/lib)
 	IF(DBG MATCHES "y")
 		MESSAGE("Copied file ${f} to lib.")
 	ENDIF(DBG MATCHES "y")
