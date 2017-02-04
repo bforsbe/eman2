@@ -39,7 +39,7 @@ import os
 import sys
 import time
 import traceback
-from EMAN2star import StarFile
+from EMAN2.EMAN2star import StarFile
 
 
 def main():

@@ -35,7 +35,7 @@
 # 3/28/16 - completing it ... steve
 
 from EMAN2 import *
-from EMAN2star import StarFile
+from EMAN2.EMAN2star import StarFile
 from optparse import OptionParser
 from math import *
 import os

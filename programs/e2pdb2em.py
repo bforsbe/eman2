@@ -44,7 +44,7 @@
 from EMAN2 import *
 from sparx import *
 from math import *
-from global_def import *
+from sparx.global_def import *
 import os
 import sys
 

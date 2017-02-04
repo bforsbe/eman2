@@ -38,13 +38,13 @@ from OpenGL.GLU import *
 from PyQt4 import QtCore, QtGui, QtOpenGL
 from PyQt4.QtCore import QTimer, Qt
 from e2eulerxplor import EMEulerExplorer
-from emglobjects import Camera, Camera2, EMGLWidget, EMViewportDepthTools, EMGLProjectionViewMatrices, EMOpenGLFlagsAndTools
-from emimage3diso import EMIsosurfaceModel
-from emimage3dslice import EM3DSliceModel
-from emimage3dsym import EM3DSymModel
-from emimage3dvol import EMVolumeModel
-from emimageutil import EMTransformPanel
-from emlights import EMLightsInspectorBase, EMLightsDrawer
+from EMAN2.emglobjects import Camera, Camera2, EMGLWidget, EMViewportDepthTools, EMGLProjectionViewMatrices, EMOpenGLFlagsAndTools
+from EMAN2.emimage3diso import EMIsosurfaceModel
+from EMAN2.emimage3dslice import EM3DSliceModel
+from EMAN2.emimage3dsym import EM3DSymModel
+from EMAN2.emimage3dvol import EMVolumeModel
+from EMAN2.emimageutil import EMTransformPanel
+from EMAN2.emlights import EMLightsInspectorBase, EMLightsDrawer
 from math import *
 import weakref
 
@@ -842,7 +842,7 @@ class EMImage3DModule(EMImage3DWidget):
 		EMImage3DWidget.__init__(self, parent, image, application, winid)
 	
 if __name__ == '__main__':
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	import sys
 	em_app = EMApp()
 	window = EMImage3DWidget(application=em_app)

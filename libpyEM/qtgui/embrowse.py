@@ -33,8 +33,8 @@
 
 import PyQt4
 from PyQt4 import QtCore, QtGui
-from emapplication import EMApp
-from emselector import EMBrowser
+from EMAN2.emapplication import EMApp
+from EMAN2.emselector import EMBrowser
 
 
 from EMAN2 import EMData

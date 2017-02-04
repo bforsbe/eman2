@@ -36,33 +36,33 @@ from PyQt4 import QtCore, QtGui, QtOpenGL
 from PyQt4.QtCore import Qt
 from OpenGL import GL,GLU,GLUT
 from OpenGL.GL import *
-from valslider import ValSlider,ValBox,StringBox
+from EMAN2.valslider import ValSlider,ValBox,StringBox
 from math import *
-import EMAN2db
+import EMAN2.EMAN2db as EMAN2db
 from EMAN2 import *
 import EMAN2
 import sys
 import numpy
 import struct
-from emimageutil import ImgHistogram, EMParentWin
-import emshape
-from emshape import EMShape
+from EMAN2.emimageutil import ImgHistogram, EMParentWin
+import EMAN2.emshape as emshape
+from EMAN2.emshape import EMShape
 from weakref import WeakKeyDictionary
 import weakref
 from pickle import dumps,loads
-from libpyGLUtils2 import *
+from EMAN2.libpyGLUtils2 import *
 
-from emglobjects import EMOpenGLFlagsAndTools
-from emapplication import get_application, EMGLWidget
-from emimageutil import EMMetaDataTable
+from EMAN2.emglobjects import EMOpenGLFlagsAndTools
+from EMAN2.emapplication import get_application, EMGLWidget
+from EMAN2.emimageutil import EMMetaDataTable
 
-from emanimationutil import SingleValueIncrementAnimation, LineAnimation
+from EMAN2.emanimationutil import SingleValueIncrementAnimation, LineAnimation
 
 import platform
 
 MAG_INC = 1.1
 
-from emglobjects import EMOpenGLFlagsAndTools
+from EMAN2.emglobjects import EMOpenGLFlagsAndTools
 
 class EMImage2DWidget(EMGLWidget):
 	"""
@@ -380,7 +380,7 @@ class EMImage2DWidget(EMGLWidget):
 
 	def set_data(self,incoming_data,file_name="",retain_current_settings=True):
 		"""You may pass a single 2D image or a list of images"""
-		from emimagemx import EMDataListCache,EMLightWeightParticleCache
+		from EMAN2.emimagemx import EMDataListCache,EMLightWeightParticleCache
 		#if self.data != None and self.file_name != "":
 			#self.__write_display_settings_to_db()
 
@@ -2259,7 +2259,7 @@ class EMImageInspector2D(QtGui.QWidget):
 		ds=1.0/(fft["ny"]*data["apix_x"])
 		s=[ds*i for i in xrange(fft["ny"]/2)]
 		
-		from emplot2d import EMDataFnPlotter
+		from EMAN2.emplot2d import EMDataFnPlotter
 		
 		dfp=EMDataFnPlotter(data=(s,pspec))
 		dfp.show()
@@ -2267,7 +2267,7 @@ class EMImageInspector2D(QtGui.QWidget):
 		
 	def do_pspec_stack(self,ign): 
 		"""compute average 1D power spectrum of all images and plot"""
-		from emplot2d import EMDataFnPlotter
+		from EMAN2.emplot2d import EMDataFnPlotter
 
 		if len(self.target().list_data)<2 : return
 		for im in self.target().list_data:
@@ -2281,7 +2281,7 @@ class EMImageInspector2D(QtGui.QWidget):
 		ds=1.0/(fft["ny"]*self.target().get_data()["apix_x"])
 		s=[ds*i for i in xrange(fft["ny"]/2)]
 		
-		from emplot2d import EMDataFnPlotter
+		from EMAN2.emplot2d import EMDataFnPlotter
 		
 		dfp=EMDataFnPlotter(data=(s,pspec))
 		dfp.show()
@@ -2550,7 +2550,7 @@ class EMImage2DModule(EMImage2DWidget):
 
 # This is just for testing, of course
 if __name__ == '__main__':
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	em_app = EMApp()
 	window = EMImage2DWidget(application=em_app)
 

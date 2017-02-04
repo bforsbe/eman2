@@ -33,11 +33,11 @@
 #
 
 from EMAN2 import *
-from emglobjects import init_glut, get_default_gl_colors
-from emitem3d import EMItem3D, EMItem3DInspector, drawBoundingBox
-from libpyGLUtils2 import FTGLFontMode
+from EMAN2.emglobjects import init_glut, get_default_gl_colors
+from EMAN2.emitem3d import EMItem3D, EMItem3DInspector, drawBoundingBox
+from EMAN2.libpyGLUtils2 import FTGLFontMode
 import math
-from valslider import EMQTColorWidget, ValSlider, EMSpinWidget
+from EMAN2.valslider import EMQTColorWidget, ValSlider, EMSpinWidget
 
 from OpenGL.GL import *
 from OpenGL.GLU import *

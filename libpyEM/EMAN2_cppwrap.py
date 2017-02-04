@@ -30,26 +30,26 @@
 #
 #
 
-from libpyAligner2 import *
-from libpyAverager2 import *
-from libpyBoxingTools2 import *
-from libpyCmp2 import *
-from libpyProcessor2 import *
-from libpyReconstructor2 import * 
-from libpyProjector2 import *
-from libpyEMObject2 import * 
-from libpyEMData2 import *
-from libpyGeometry2 import *
-from libpyTransform2 import *
-from libpyUtils2 import * 
-from libpyPointArray2 import *
-from libpyPDBReader2 import *
-from libpyTypeConverter2 import *
-from libpyFundamentals2 import *
-from libpyPolarData2 import * 
-from libpyAnalyzer2 import *
-try: from libpyTomoSeg2 import * 			# this module may not exist on Windows, which is okay, so prevent crash.
+from EMAN2.libpyAligner2 import *
+from EMAN2.libpyAverager2 import *
+from EMAN2.libpyBoxingTools2 import *
+from EMAN2.libpyCmp2 import *
+from EMAN2.libpyProcessor2 import *
+from EMAN2.libpyReconstructor2 import * 
+from EMAN2.libpyProjector2 import *
+from EMAN2.libpyEMObject2 import * 
+from EMAN2.libpyEMData2 import *
+from EMAN2.libpyGeometry2 import *
+from EMAN2.libpyTransform2 import *
+from EMAN2.libpyUtils2 import * 
+from EMAN2.libpyPointArray2 import *
+from EMAN2.libpyPDBReader2 import *
+from EMAN2.libpyTypeConverter2 import *
+from EMAN2.libpyFundamentals2 import *
+from EMAN2.libpyPolarData2 import * 
+from EMAN2.libpyAnalyzer2 import *
+try: from EMAN2.libpyTomoSeg2 import * # this module may not exist on Windows, which is okay, so prevent crash.
 except: pass
-try: from libpyMarchingCubes2 import *		# this module won't always exist. Somethings may fail without it, but that's inevitable
+try: from EMAN2.libpyMarchingCubes2 import * # this module won't always exist. Somethings may fail without it, but that's inevitable
 except: pass
-#from libpyGLUtils2 import *
+#from EMAN2.libpyGLUtils2 import *

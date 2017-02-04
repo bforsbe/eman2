@@ -31,7 +31,7 @@
 #
 
 from EMAN2 import *
-from Simplex import Simplex
+from EMAN2.Simplex import Simplex
 #from Anneal import BaseAnnealer
 import numpy as np
 import sys

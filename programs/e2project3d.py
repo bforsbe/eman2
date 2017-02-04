@@ -38,7 +38,7 @@
 
 import sys, math, os, random
 from EMAN2 import *
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 deg2rad = math.pi / 180.0
 rad2deg = 180.0 / math.pi
 DEBUG = False
@@ -63,7 +63,7 @@ class EMParallelProject3D:
 		self.start=start
 		self.modeln=modeln
 
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 		self.etc=EMTaskCustomer(options.parallel)
 		print "Precache ",fsp
 		self.etc.precache([fsp])

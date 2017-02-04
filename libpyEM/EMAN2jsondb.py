@@ -46,8 +46,8 @@ import threading
 import traceback
 import re
 
-from libpyEMData2 import EMData
-from libpyUtils2 import EMUtil
+from EMAN2.libpyEMData2 import EMData
+from EMAN2.libpyUtils2 import EMUtil
 
 
 # If set, fairly verbose debugging information will be written to the console
@@ -131,9 +131,9 @@ class tmpimg:
 ############
 ### JSON support for specific objects
 ############
-from libpyEMData2 import *
-from libpyAligner2 import *
-from libpyTransform2 import *
+from EMAN2.libpyEMData2 import *
+from EMAN2.libpyAligner2 import *
+from EMAN2.libpyTransform2 import *
 import base64,zlib
 
 def emdata_to_jsondict(obj):
@@ -201,7 +201,7 @@ def transform_from_jsondict(dct):
 
 ### First we try Linux/Mac
 try:
-	import fcntl		# Linux/Unix file locking
+	import fcntl # Linux/Unix file locking
 
 	def file_lock(fileobj, readonly=True):
 		"""Unix file locking. Not truly enforced, but useful in thread synchronization. Multiple threads can have read-locks, but only one can have writelock"""
@@ -215,7 +215,7 @@ try:
 ### If that fails, we try windows
 except ImportError:
 	try:
-		import msvcrt	# Windows file locking
+		import msvcrt # Windows file locking
 
 		def file_lock(fileobj, readonly=True):
 			"""Windows file locking (I hope)"""

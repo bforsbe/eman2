@@ -34,9 +34,9 @@
 # e2parallel.py Steven Ludtke
 # This program implements, via various options, the parallelism system for EMAN2
 
-from EMAN2db import EMTaskQueue, EMTask
+from EMAN2.EMAN2db import EMTaskQueue, EMTask
 from EMAN2 import *
-from EMAN2PAR import *
+from EMAN2.EMAN2PAR import *
 from math import *
 import time
 import os
@@ -169,14 +169,14 @@ def runlocaltask(taskin,taskout):
 
 def rundcserver(port,verbose):
 	"""Launches a DCServer. If port is <1 or None, will autodetermine. Does not return."""
-	import EMAN2db
+	import EMAN2.EMAN2db as EMAN2db
 	# The following was causing issues with the multithreaded parallelism server. Seems like we need to insure the server and the customer
 	# are running on the same physical computer !!!
 #	EMAN2db.BDB_CACHE_DISABLE=1	# this diables caching on the server so the customer knows it can freely write to local database files
 	server=runEMDCServer(port,verbose)			# never returns
 
 def killdcclients(server,port,verbose):
-	import EMAN2db
+	import EMAN2.EMAN2db as EMAN2db
 	server=runEMDCServer(port,verbose,True)			# never returns
 
 def rundcclients(host,port,verbose):
@@ -247,7 +247,7 @@ except:
 	QtCore.QAbstractTableModel=dummy
 	
 def runservmon():
-	import EMAN2db
+	import EMAN2.EMAN2db as EMAN2db
 	# we changed the meaning of the variable to disable writing to cache altogether, pap 9-01
 	EMAN2db.BDB_CACHE_DISABLE=1
 

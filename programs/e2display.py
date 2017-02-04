@@ -32,11 +32,11 @@
 #
 
 from EMAN2 import EMANVERSION, E2init, E2end, EMData, base_name, file_exists, EMArgumentParser
-import EMAN2db
-from emapplication import EMApp
-import embrowser
-from emimage import EMImageWidget, EMWidgetFromFile
-from emscene3d import EMScene3D
+import EMAN2.EMAN2db as EMAN2db
+from EMAN2.emapplication import EMApp
+import EMAN2.embrowser as embrowser
+from EMAN2.emimage import EMImageWidget, EMWidgetFromFile
+from EMAN2.emscene3d import EMScene3D
 import os
 import sys
 
@@ -249,7 +249,7 @@ def display(img,app,title="EMAN2 image"):
 	return w
 
 def plot(files,app):
-	from emplot2d import EMPlot2DWidget
+	from EMAN2.emplot2d import EMPlot2DWidget
 	plotw=EMPlot2DWidget(application=app)
 	for f in files:
 		plotw.set_data_from_file(f,quiet=True)
@@ -258,7 +258,7 @@ def plot(files,app):
 	return plotw
 
 def hist(files,app):
-	from emhist import EMHistogramWidget
+	from EMAN2.emhist import EMHistogramWidget
 	histw=EMHistogramWidget(application=app)
 	for f in files:
 		histw.set_data_from_file(f,quiet=True)
@@ -267,7 +267,7 @@ def hist(files,app):
 	return histw
 
 def plot_3d(files,app):
-	from emplot3d import EMPlot3DWidgetNew
+	from EMAN2.emplot3d import EMPlot3DWidgetNew
 	plotw=EMPlot3DWidgetNew(application=app)
 	for f in files:
 		plotw.set_data_from_file(f)
@@ -276,7 +276,7 @@ def plot_3d(files,app):
 	return plotw
 
 def load_pdb(files,app):
-	from empdbitem3D import EMPDBItem3D, EMBallStickModel
+	from EMAN2.empdbitem3D import EMPDBItem3D, EMBallStickModel
 	scene=EMScene3D()
 	title = []
 	for f in files:

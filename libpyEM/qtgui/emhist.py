@@ -62,12 +62,12 @@ import OpenGL.arrays.vbo as glvbo
 from math import *
 from EMAN2 import *
 import sys
-from emshape import *
+from EMAN2.emshape import *
 import weakref
 from cPickle import dumps,loads
 import struct, math
 from numpy import *
-from valslider import *
+from EMAN2.valslider import *
 from cStringIO import StringIO
 import re
 #import emimage2d
@@ -80,8 +80,8 @@ from matplotlib.figure import Figure
 
 import numpy as np
 
-from emapplication import EMApp, EMGLWidget
-from emglobjects import EMOpenGLFlagsAndTools
+from EMAN2.emapplication import EMApp, EMGLWidget
+from EMAN2.emglobjects import EMOpenGLFlagsAndTools
 
 import traceback
 

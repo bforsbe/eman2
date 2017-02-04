@@ -36,29 +36,29 @@ from PyQt4.QtCore import Qt
 from OpenGL import GL,GLU,GLUT
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 from math import *
 from EMAN2 import *
 #import EMAN2db
-from EMAN2db import db_open_dict, db_check_dict
-from EMAN2jsondb import js_open_dict, js_check_dict
+from EMAN2.EMAN2db import db_open_dict, db_check_dict
+from EMAN2.EMAN2jsondb import js_open_dict, js_check_dict
 import EMAN2
 import copy
 import sys
 import numpy
-from emimageutil import ImgHistogram, EMParentWin
+from EMAN2.emimageutil import ImgHistogram, EMParentWin
 from weakref import WeakKeyDictionary
 from pickle import dumps,loads
 from PyQt4.QtGui import QImage
 from PyQt4.QtCore import QTimer
-from libpyGLUtils2 import *
+from EMAN2.libpyGLUtils2 import *
 
-from emglobjects import EMOpenGLFlagsAndTools,EMGLProjectionViewMatrices,EMBasicOpenGLObjects,init_glut
-from emapplication import EMGLWidget, get_application, EMApp
-from emanimationutil import LineAnimation
+from EMAN2.emglobjects import EMOpenGLFlagsAndTools,EMGLProjectionViewMatrices,EMBasicOpenGLObjects,init_glut
+from EMAN2.emapplication import EMGLWidget, get_application, EMApp
+from EMAN2.emanimationutil import LineAnimation
 import weakref
 
-from emapplication import EMProgressDialog
+from EMAN2.emapplication import EMProgressDialog
 
 
 class EMMatrixPanel:
@@ -1559,7 +1559,7 @@ class EMImageMXWidget(EMGLWidget, EMGLProjectionViewMatrices):
 			return
 
 		self.data.set_excluded_ptcls(self.deletion_manager.deleted_ptcls())
-		from emsave import save_data
+		from EMAN2.emsave import save_data
 		file_name = save_data(self.data)
 		if file_name == self.file_name and file_exists(file_name): # the file we are working with was overwritten
 			self.set_data(file_name)

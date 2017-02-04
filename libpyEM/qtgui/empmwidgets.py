@@ -35,14 +35,14 @@
 # You may also need to reimplemnt getArgument (which returns the argument used in calling the e2program), if the default will not work for you.
 # In addition, you'll need to add a line in the class PMGUIWidget (e2projectmanager) to instatiate the widget based on the value of 'guitype'
 
-from EMAN2db import db_check_dict
+from EMAN2.EMAN2db import db_check_dict
 import sys, math, weakref
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-from emselector import EMSelectorDialog	# This will be replaced by something more sensible in the future
+from EMAN2.emselector import EMSelectorDialog # This will be replaced by something more sensible in the future
 import re, os, glob
-from embrowser import EMBrowserWidget
-from empmtabwidgets import *
+from EMAN2.embrowser import EMBrowserWidget
+from EMAN2.empmtabwidgets import *
 
 class PMComboBox(QtGui.QComboBox):
 	""" Reimplment the QComboBox to remove wheel widget activation """

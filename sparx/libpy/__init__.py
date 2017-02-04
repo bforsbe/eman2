@@ -35,15 +35,16 @@
 Python layer for scripting and interactive use.
 """
 
-from utilities       import *
-from filter          import *
-from projection      import *
-from fundamentals    import *
-from statistics      import *
-from alignment       import *
-from morphology      import *
-from reconstruction  import *
-from applications    import *
+
+SPARXDIR = os.path.dirname(os.path.abspath(__file__))
+EMAN2DIR = SPARXDIR.replace("sparx","EMAN2")
+
+from sparx.utilities import *
+from sparx.filter import *
+from sparx.projection import *
+from sparx.fundamentals import *
+from sparx.statistics import *
 from global_def      import *
 from pixel_error     import *
 from development     import *
+

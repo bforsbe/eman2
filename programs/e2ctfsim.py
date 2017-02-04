@@ -35,7 +35,7 @@
 # This is a program for determining CTF parameters and (optionally) phase flipping images
 
 from EMAN2 import *
-from EMAN2db import db_open_dict, db_close_dict, db_check_dict, db_list_dicts
+from EMAN2.EMAN2db import db_open_dict, db_close_dict, db_check_dict, db_list_dicts
 from optparse import OptionParser
 from OpenGL import GL,GLUT
 from math import *
@@ -65,7 +65,7 @@ A simple CTF simulation program.
 
 	(options, args) = parser.parse_args()
 
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	app=EMApp()
 	gui=GUIctfsim(app,options.apix,options.voltage,options.cs,options.ac,options.samples,options.apply)
 	gui.show_guis()
@@ -77,8 +77,8 @@ A simple CTF simulation program.
 try:
 	from PyQt4 import QtCore, QtGui, QtOpenGL
 	from PyQt4.QtCore import Qt
-	from emshape import *
-	from valslider import ValSlider
+	from EMAN2.emshape import *
+	from EMAN2.valslider import ValSlider
 except:
 	print "Error: PyQt4 must be installed"
 	sys.exit(1)
@@ -101,12 +101,12 @@ class GUIctfsim(QtGui.QWidget):
 		"""CTF simulation dialog
 		"""
 		try:
-			from emimage2d import EMImage2DWidget
+			from EMAN2.emimage2d import EMImage2DWidget
 		except:
 			print "Cannot import EMAN image GUI objects (EMImage2DWidget)"
 			sys.exit(1)
 		try:
-			from emplot2d import EMPlot2DWidget
+			from EMAN2.emplot2d import EMPlot2DWidget
 		except:
 			print "Cannot import EMAN plot GUI objects (is matplotlib installed?)"
 			sys.exit(1)

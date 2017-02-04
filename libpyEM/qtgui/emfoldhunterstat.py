@@ -438,7 +438,7 @@ class E2FoldHunterStat:
 
 
 if __name__ == '__main__':
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	em_app = EMApp()
 	window2 = E2FoldHunterStat()
 	print "This program is meant to be run in conjunction with e2validatemed.py in the programs directory"

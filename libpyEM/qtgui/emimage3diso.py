@@ -37,7 +37,7 @@ from PyQt4.QtCore import Qt
 from OpenGL import GL,GLU,GLUT
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 from math import *
 from EMAN2 import *
 import sys
@@ -45,10 +45,10 @@ import numpy
 from time import time
 import weakref
 from time import *
-from libpyGLUtils2 import GLUtil
+from EMAN2.libpyGLUtils2 import GLUtil
 
-from emglobjects import EMViewportDepthTools, Camera2, get_default_gl_colors,get_RGB_tab, EM3DModel
-from emimageutil import ImgHistogram, EMTransformPanel
+from EMAN2.emglobjects import EMViewportDepthTools, Camera2, get_default_gl_colors,get_RGB_tab, EM3DModel
+from EMAN2.emimageutil import ImgHistogram, EMTransformPanel
 
 
 MAG_INCREMENT_FACTOR = 1.1
@@ -285,7 +285,7 @@ class EMIsosurfaceModel(EM3DModel):
 		self.load_colors()
 		self.inspector.set_materials(self.colors,self.isocolor)
 		
-		from emglobjects import EM3DGLWidget
+		from EMAN2.emglobjects import EM3DGLWidget
 		if isinstance(self.get_gl_widget(),EM3DGLWidget):
 			self.get_gl_widget().set_camera_defaults(self.data)
 	
@@ -713,8 +713,8 @@ class EMIsoInspector(QtGui.QWidget):
 		self.hist.set_data(hist,minden,maxden)
 
 if __name__ == '__main__':
-	from emglobjects import EM3DGLWidget
-	from emapplication import EMApp
+	from EMAN2.emglobjects import EM3DGLWidget
+	from EMAN2.emapplication import EMApp
 	app = EMApp()
 	window = EM3DGLWidget()
 	iso_model = EMIsosurfaceModel(window, test_image_3d(1,size=(64,64,64)))

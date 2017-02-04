@@ -34,7 +34,7 @@
 
 from EMAN2 import *
 import os, math
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 	
 def main():
 	"""Program to validate a reconstruction by the Richard Henderson tilt validation method. A volume to validate, a small stack (~100 imgs) of untilted and ~10-15 degree
@@ -162,10 +162,10 @@ def main():
 
 	# Initialize parallelism if being used
 	if options.parallel :
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 		etc=EMTaskCustomer(options.parallel)
 	else:
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 		etc=EMTaskCustomer("thread:1")
 		#etc.precache(pclist)
 	
@@ -436,9 +436,9 @@ def run(command):
 try:
 	from PyQt4 import QtCore, QtGui, QtOpenGL
 	from PyQt4.QtCore import Qt
-	from emshape import *
-	from valslider import ValSlider
-	from emplot2d import EMPolarPlot2DWidget
+	from EMAN2.emshape import *
+	from EMAN2.valslider import ValSlider
+	from EMAN2.emplot2d import EMPolarPlot2DWidget
 except:
 	class dummy:
 		pass
@@ -450,8 +450,8 @@ except:
 	QtGui.QWidget=QWidget
 
 def display_validation_plots(path, radcut, planethres, plotdatalabels=False, color='#00ff00', plotzaxiscolor=False):
-	from emimage2d import EMImage2DWidget
-	from emapplication import EMApp
+	from EMAN2.emimage2d import EMImage2DWidget
+	from EMAN2.emapplication import EMApp
 	r = []
 	theta = []
 	datap = []

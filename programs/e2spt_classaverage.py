@@ -43,9 +43,9 @@ import sys
 import random
 from random import choice
 from pprint import pprint
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 import datetime
-import gc 	#this will be used to free-up unused memory
+import gc #this will be used to free-up unused memory
 
 #from e2spt_hac import textwriter
 
@@ -574,7 +574,7 @@ def main():
 		else:
 			print "\n\n(e2spt_classaverage)(main) - INITIALIZING PARALLELISM!"
 			print "\n\n"
-			from EMAN2PAR import EMTaskCustomer
+			from EMAN2.EMAN2PAR import EMTaskCustomer
 			etc=EMTaskCustomer(options.parallel)
 			pclist=[options.input]
 	
@@ -4539,7 +4539,7 @@ def alignment( fixedimage, image, label, options, xformslabel, iter, transform, 
 	if options.tweak:
 		bestfinal = besttweak
 	
-	from operator import itemgetter							#If you just sort 'bestfinal' it will be sorted based on the 'coarse' key in the dictionaries of the list
+	from operator import itemgetter #If you just sort 'bestfinal' it will be sorted based on the 'coarse' key in the dictionaries of the list
 															#because they come before the 'score' key of the dictionary (alphabetically). Should be sorted already, except if there was no --falign
 	bestfinal = sorted(bestfinal, key=itemgetter('score'))
 

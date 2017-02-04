@@ -33,12 +33,12 @@
 from EMAN2 import *
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import Qt
-from pmicons import *
+from EMAN2.pmicons import *
 import os, json, re, glob, signal
 import subprocess
-from empmwidgets import *
-from valslider import EMQTColorWidget
-from embrowser import EMBrowserWidget
+from EMAN2.empmwidgets import *
+from EMAN2.valslider import EMQTColorWidget
+from EMAN2.embrowser import EMBrowserWidget
 
 class EMProjectManager(QtGui.QMainWindow):
 	""" The EM Project Manager is a QT application to provide a GUI for EMAN2 job managment.
@@ -2093,7 +2093,7 @@ first upgrade the project with e2projectupdate21.py. You can still use the e2dis
 GUI directly to browse the contents of old-style projects."""
 		sys.exit(1)
 
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	app = EMApp()
 	#app = QtGui.QApplication(sys.argv)
 	pm = EMProjectManager()

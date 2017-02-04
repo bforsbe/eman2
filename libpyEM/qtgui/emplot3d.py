@@ -38,14 +38,14 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from PyQt4 import QtCore, QtGui, QtOpenGL
 from PyQt4.QtCore import Qt
-from emglobjects import EM3DModel, Camera2, EMViewportDepthTools2, draw_volume_bounds, get_default_gl_colors, init_glut, EM3DGLWidget
-from emimageutil import EMTransformPanel
-from emlights import *
-from emimage3d import EMImage3DWidget
-from libpyGLUtils2 import *
+from EMAN2.emglobjects import EM3DModel, Camera2, EMViewportDepthTools2, draw_volume_bounds, get_default_gl_colors, init_glut, EM3DGLWidget
+from EMAN2.emimageutil import EMTransformPanel
+from EMAN2.emlights import *
+from EMAN2.emimage3d import EMImage3DWidget
+from EMAN2.libpyGLUtils2 import *
 from math import *
 from time import *
-from valslider import ValSlider
+from EMAN2.valslider import ValSlider
 import copy
 import weakref
 
@@ -54,8 +54,8 @@ MAG_INCREMENT_FACTOR = 1.1
 
 class EMPlot3DWidgetNew(QtGui.QWidget):
 	def __init__(self, gl_widget=None):
-		from emscene3d import EMScene3D
-		from emshapeitem3d import EMScatterPlot3D
+		from EMAN2.emscene3d import EMScene3D
+		from EMAN2.emshapeitem3d import EMScatterPlot3D
 		QtGui.QWidget.__init__(self)
 		
 		# make the plot3d widget
@@ -1392,7 +1392,7 @@ class EMPlot3DModule(EMPlot3DModel):
 		warnings.warn("convert EMPlot3DModule to EMPlot3DModel", DeprecationWarning)
 # This is just for testing, of course
 if __name__ == '__main__':
-	from emapplication import EMApp
+	from EMAN2.emapplication import EMApp
 	em_app = EMApp()
 	widget = EMPlot3DWidget()
 	widget.set_data(get_test_data(),"test data")

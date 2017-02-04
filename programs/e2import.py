@@ -32,7 +32,7 @@
 #
 import os, shutil, glob
 from EMAN2 import *
-from EMAN2star import StarFile
+from EMAN2.EMAN2star import StarFile
 import numpy as np
 
 def main():

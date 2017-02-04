@@ -43,13 +43,13 @@ import signal
 import traceback
 import shutil
 import subprocess
-import thread,threading
+from EMAN2 import thread,threading
 import getpass
 import select
 
 from EMAN2 import test_image,EMData,abs_path,local_datetime,EMUtil,Util,get_platform
 from EMAN2db import e2filemodtime
-from EMAN2jsondb import JSTask,JSTaskQueue,js_open_dict
+from EMAN2.EMAN2jsondb import JSTask,JSTaskQueue,js_open_dict
 from e2classaverage import ClassAvTask
 from e2classifytree import TreeClassifyTask
 from e2refine_split import ClassSplitTask

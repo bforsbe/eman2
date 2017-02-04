@@ -36,7 +36,7 @@ except: ndimage=None
 import subprocess
 import os
 import time
-from EMAN2jsondb import JSTask,jsonclasses
+from EMAN2.EMAN2jsondb import JSTask,jsonclasses
 
 def main():
 	progname = os.path.basename(sys.argv[0])
@@ -69,7 +69,7 @@ def main():
 	nfiles = len(args)
 
 	if options.parallel:
-		from EMAN2PAR import EMTaskCustomer
+		from EMAN2.EMAN2PAR import EMTaskCustomer
 		etc=EMTaskCustomer(options.parallel)
 
 	for argnum,arg in enumerate(args):
