@@ -1,0 +1,66 @@
+package:
+    name: eman2
+    version: 3.2
+
+source:
+    git_url: https://github.com/cryoem/eman2.git
+    git_tag: appveyor
+#    path: /Users/shadow_walker/Files/eclipse_workspace/workspace_work/eman2
+
+build:
+    number: 3
+
+requirements:
+    {% set reqs_common = [
+            "python 2.7.*",
+            "boost 1.61.*",
+            "fftw",
+            "numpy",
+            "ftgl",
+            "freetype",
+            "gsl",
+            "hdf5",
+            "jpeg",
+            "libtiff",
+            "libpng",
+            "szip",  # [win]
+            "zlib",
+    ] %}
+    
+    build:
+        - cmake
+        
+        {% for req in reqs_common %}
+        - {{ req }}
+        {% endfor %}
+    
+    run:
+        {% for req in reqs_common %}
+        - {{ req }}
+        {% endfor %}
+        
+        - bsddb  # [not win]
+        - matplotlib
+        - ipython
+        - pyqt 4.*
+        - pyopengl 3.0.*
+        - theano
+        - scipy
+        - pyqt 4.*
+        - pyopengl
+        - theano
+        - scipy
+
+#test:
+#  commands:
+#    - eman2.py
+#    - e2display.py -h
+
+about:
+  home: http://blake.bcm.edu/emanwiki
+  license: GPL2
+  summary: A scientific image processing software suite with a focus on CryoEM and CryoET.
+
+extra:
+  maintainers:
+    - shadowwalkersb
