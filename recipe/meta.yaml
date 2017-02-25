@@ -3,7 +3,7 @@ package:
     version: 2.2
 
 source:
-    path: {{ RECIPE_DIR }}/..
+    path: /feedstock_root
 
 build:
     number: 0

@@ -6,7 +6,6 @@
 # benefit from the improvement.
 
 FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
-RECIPE_ROOT=$FEEDSTOCK_ROOT/recipe
 
 docker info
 
@@ -17,16 +16,12 @@ channels:
  - conda-forge
  - defaults
 
-conda-build:
- root-dir: /feedstock_root/build_artefacts
-
 show_channel_urls: true
 
 CONDARC
 )
 
 cat << EOF | docker run -i \
-                        -v "${RECIPE_ROOT}":/recipe_root \
                         -v "${FEEDSTOCK_ROOT}":/feedstock_root \
                         -a stdin -a stdout -a stderr \
                         condaforge/linux-anvil \
@@ -53,5 +48,5 @@ yum install -y libXi-devel libXmu-devel mesa-libGLU-devel
     set -x
     export CONDA_PY=27
     set +x
-    conda build /recipe_root --quiet || exit 1
+    conda build /feedstock_root/recipe --quiet || exit 1
 EOF
