@@ -1,14 +1,12 @@
 package:
     name: eman2
-    version: 3.2
+    version: 2.2
 
 source:
-    git_url: https://github.com/cryoem/eman2.git
-    git_tag: appveyor
-#    path: /Users/shadow_walker/Files/eclipse_workspace/workspace_work/eman2
+    path: {{ RECIPE_DIR }}/..
 
 build:
-    number: 3
+    number: 0
 
 requirements:
     {% set reqs_common = [

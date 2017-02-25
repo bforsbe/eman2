@@ -13,8 +13,7 @@ docker info
 config=$(cat <<CONDARC
 
 channels:
- - shadow_walker/label/dev
- - gorgoncryoem/label/dependency
+ - jmbell
  - conda-forge
  - defaults
 
@@ -33,7 +32,6 @@ cat << EOF | docker run -i \
                         condaforge/linux-anvil \
                         bash || exit $?
 
-export BINSTAR_TOKEN=${BINSTAR_TOKEN}
 export PYTHONUNBUFFERED=1
 
 echo "$config" > ~/.condarc
@@ -56,5 +54,4 @@ yum install -y libXi-devel libXmu-devel mesa-libGLU-devel
     export CONDA_PY=27
     set +x
     conda build /recipe_root --quiet || exit 1
-    upload_or_check_non_existence /recipe_root shadow_walker --channel=dev || exit 1
 EOF
