@@ -218,6 +218,7 @@ if("$ENV{CONDA_BUILD_STATE}" STREQUAL "BUILD")
 	find_package(PNG REQUIRED)
 	find_package(JPEG REQUIRED)
 	find_package(ZLIB REQUIRED)
+		set(GSL_INCLUDE_DIRS $ENV{PREFIX}/include)
 	find_package(Freetype REQUIRED)
 
 #		Set expected vars to values just found
