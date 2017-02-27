@@ -19,3 +19,5 @@ e2version.py
 if errorlevel 1 exit 1
 e2speedtest.py
 if errorlevel 1 exit 1
+e2display.py -h
+if errorlevel 1 exit 1

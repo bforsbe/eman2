@@ -7,3 +7,4 @@ export EMAN2DIR=$HOME/EMAN2
 
 e2version.py
 e2speedtest.py
+e2display.py -h
