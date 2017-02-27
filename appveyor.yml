@@ -38,6 +38,10 @@ install:
     - cmd: conda config --set add_pip_as_python_dependency false
     - cmd: conda install -n root --yes --quiet vs2008_express_vc_python_patch
     - cmd: call setup_x64
+    - cmd: conda install --yes --quiet qt=4 pyqt=4
+    - cmd: conda install --yes --quiet -c conda-forge boost boost-cpp fftw
+    - cmd: conda install --yes --quiet -c jmbell ftgl
+    - cmd: conda install --yes --quiet freetype gsl hdf5 ipython jpeg libpng libtiff matplotlib numpy=1.11 pyopengl scikit-learn scipy theano tk cmake
     - cmd: conda info
     - cmd: conda config --get
 
