@@ -1,2 +1,2 @@
 INSTALL(FILES DejaVuSerif.ttf readme.txt
-    DESTINATION fonts)
+    DESTINATION ${EMAN_PY_INSTALL_PREFIX_UP}/fonts)
