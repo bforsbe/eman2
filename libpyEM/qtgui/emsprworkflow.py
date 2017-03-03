@@ -254,7 +254,7 @@ class WorkFlowTask:
 			filenames = files[n]
 			if len(filenames) == 0: continue # maybe there are more CPUS then filenames
 								
-			args = [e2getinstalldir()+"/bin/"+program]
+			args = [e2getinstalldir()+"/../../../bin/"+program]
 	
 			for name in filenames:
 				args.append(name)
@@ -300,7 +300,7 @@ class WorkFlowTask:
 		project_db = db_open_dict("bdb:project")	
 								
 		#args = [program]
-		args = [e2getinstalldir()+"/bin/"+program]
+		args = [e2getinstalldir()+"/../../../bin/"+program]
 		if hasattr(options,"filenames"):
 			for name in options.filenames:
 				args.append(name)

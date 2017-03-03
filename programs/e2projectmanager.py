@@ -564,7 +564,7 @@ class EMProjectManager(QtGui.QMainWindow):
 		Read in and return the usage from an e2program
 		"""
 		try:
-			f = open(os.getenv("EMAN2DIR")+"/bin/"+program,"r")
+			f = open(os.getenv("EMAN2DIR")+"/../../../bin/"+program,"r")
 		except:
 			self.statusbar.setMessage("Can't open usage file '%s'"%program,"color:red;")
 			return
@@ -709,7 +709,7 @@ class EMProjectManager(QtGui.QMainWindow):
 		"""
 		parser = EMArgumentParser()
 		try:
-			f = open(os.getenv("EMAN2DIR")+"/bin/"+e2program,"r")
+			f = open(os.getenv("EMAN2DIR")+"/../../../bin/"+e2program,"r")
 		except:
 			self.statusbar.setMessage("Can't open file '%s'"%e2program,"color:red;")
 			return
