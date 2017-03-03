@@ -48,7 +48,7 @@ class EMProjectManager(QtGui.QMainWindow):
 		# default PM attributes
 		self.pm_cwd = os.getcwd()
 		self.pn_project_name_default='Unknown'
-		self.pm_icon = self.pm_icon_default = os.getenv("EMAN2DIR")+"/images/EMAN2Icon.png"
+		self.pm_icon = self.pm_icon_default = os.getenv("EMAN2DIR")+"/../images/EMAN2Icon.png"
 		self.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(pmicon)))
 
 		# Set Defaults
@@ -1054,7 +1054,7 @@ class TheHelp(QtGui.QWidget):
 		helplabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
 
 		hbox = QtGui.QHBoxLayout()
-		hbox.addWidget(PMIcon(os.getenv("EMAN2DIR")+"/images/SirEMAN2.png"))
+		hbox.addWidget(PMIcon(os.getenv("EMAN2DIR")+"/../images/SirEMAN2.png"))
 		hbox.addWidget(helplabel)
 		hbox.setContentsMargins(0,0,0,0)
 		grid.addLayout(hbox,0, 0)
