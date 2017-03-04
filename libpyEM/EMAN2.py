@@ -62,7 +62,7 @@ try:
 	os.putenv("LC_ALL","en_US.utf8")
 except: pass
 
-os.environ["EMAN2DIR"] = os.path.join(os.path.dirname(__file__), os.pardir)
+os.environ["EMAN2DIR"] = os.path.dirname(__file__)
 
 # This block attempts to open the standard EMAN2 database interface
 # if it fails, it sets db to None. Applications can then alter their
