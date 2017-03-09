@@ -1,4 +1,4 @@
-Jenkinsfile (Declarative Pipeline)
+#!groovy
 
 pipeline {
     agent any
