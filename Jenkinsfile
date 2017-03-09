@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'mkdir build_eman && cd build_eman && cmake ..'
+                sh 'cd build_eman && cmake ..'
             }
         }
         stage('Test') {
