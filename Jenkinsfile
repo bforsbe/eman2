@@ -7,8 +7,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                prefix='/Users/shadow_walker/anaconda'
-                sp_dir=prefix +'/lib/python2.7/site-packages'
                 sh 'cd build_eman && /usr/local/bin/cmake .. -DNUMPY_INCLUDE_PATH=' + sp_dir+'/numpy/core/include'+
                                                              '-DBOOST_INCLUDE_PATH='+prefix+'/include'+
                                                              '-DBOOST_LIBRARY='+prefix+'/lib/libboost_python.dylib'+
@@ -35,7 +33,6 @@ pipeline {
                                                              '-DTIFF_INCLUDE_PATH='+prefix+'/include'+
                                                              '-DTIFF_LIBRARY='+prefix+'/lib/libtiff.dylib'+
                                                              '-DZLIB_LIBRARY='+prefix+'/lib/libz.dylib'
-'
             }
         }
         stage('Test') {
